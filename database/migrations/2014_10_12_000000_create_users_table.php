@@ -13,16 +13,22 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+      if (!Schema::hasTable('users')) {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->engine = 'InnoDB';
+            $table->string('Account',10)->primary()->comment('帳號');
+            $table->string('Password',100);
+            $table->string('Name',20)->collation('utf8_unicode_ci');
+            $table->string('Email',200);
+            $table->char('AuthCode',10)->collation('utf8_unicode_ci');
+            $table->boolean('IsNewMember',1);
+            $table->integer('Role');
             $table->rememberToken();
             $table->timestamps();
-        });
+          });
+        }
     }
-
+    
     /**
      * Reverse the migrations.
      *
