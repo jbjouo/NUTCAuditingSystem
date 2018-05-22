@@ -79,7 +79,7 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span >{{ $user->Name  }}</span>
+                                    <span >{{ Auth::user()->Name  }}</span>
                                 </a>
                                 <ul class="dropdown-menu ">
                                     <!-- User image -->
@@ -156,7 +156,7 @@
                             </a>
                             <ul class="treeview-menu">
 
-                                @if ($user->Role == 5)
+                                @if (Auth::user()->Role == 5)
                                   <li><a href="{{url('permision')}}"><i class="fa fa-circle-o"></i>權限設定</a></li>
                                 @endif
                                 <li><a href="{{url('NUTCAuditing/project/index')}}"><i class="fa fa-circle-o"></i>年度內部稽核計畫</a></li>

@@ -18,4 +18,4 @@
             <!-- /.box -->
         </div>
     </section>
-@stop
+@endsection

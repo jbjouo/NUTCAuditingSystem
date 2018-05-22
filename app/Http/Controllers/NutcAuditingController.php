@@ -7,15 +7,15 @@ use Auth;
 
 class NutcAuditingController extends Controller
 {
+	public function __construct()
+	{
+			$this->middleware('auth');
+	}
 	public function index(){
-		$user = Auth::user();
-		return view('NutcAuditing.index',['user'=>$user]);
+		return view('NutcAuditing.index');
 	}
 	public function permision() {
-
-		$user = Auth::user();
-		dd($user);
-		return view('NutcAuditing.permision',['user'=>$user]);
+		return view('NutcAuditing.permision');
 
 	}
 }

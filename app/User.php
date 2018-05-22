@@ -9,22 +9,19 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $primaryKey ='Account';
-
+    protected $primaryKey ='id';
 
     protected $fillable = [
-        'Account','Password','Name', 'Email','AuthCode', 'IsNewMember','Role',
+        'Account','Password',
     ];
 
-
-
-     public function getAuthPassword()
-     {
-         return $this->Password;
-     }
-
+    public function getAuthPassword()
+    {
+        return $this->Password;
+    }
 
     protected $hidden = [
         'Password', 'remember_token',
     ];
+    protected $table = "users";
 }

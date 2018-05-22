@@ -16,9 +16,10 @@ class CreateUsersTable extends Migration
       if (!Schema::hasTable('users')) {
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->string('Account',10)->primary()->comment('帳號');
+            $table->integer('id')->autoIncrement();
+            $table->string('Account',10)->comment('帳號')->unique();
             $table->string('Password',100);
-            $table->string('Name',20)->collation('utf8_unicode_ci');
+            $table->string('Name',50)->collation('utf8_unicode_ci');
             $table->string('Email',200);
             $table->char('AuthCode',10)->collation('utf8_unicode_ci');
             $table->boolean('IsNewMember',1);
@@ -28,7 +29,7 @@ class CreateUsersTable extends Migration
           });
         }
     }
-    
+
     /**
      * Reverse the migrations.
      *

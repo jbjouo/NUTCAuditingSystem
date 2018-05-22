@@ -15,9 +15,34 @@ use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'remember_token' => str_random(10),
+      'Account' => math_beuse::rand(),
+      'Password' => bcrypt('a123123'),
+      'Name' => $faker->name,
+      'Email' => $faker->unique()->safeEmail,
+      'AuthCode' => math_beuse::base62(),
+      'IsNewMember' => 1,
+      'Role' => 0,
     ];
 });
+
+class math_beuse{
+  public static function base62(){
+      $index = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $res = '';
+      for ($x = 1; $x < 10; $x++) {
+          $res .= $index[rand(0, strlen($index)-1)];
+      }
+      return $res;
+  }
+  public static function rand(){
+      $index1 = '12';
+      $index2 = '0123456789';
+      $res = 'L';
+      $res .= $index1[rand(0, strlen($index1)-1)];
+
+      for ($x = 1; $x <= 8; $x++) {
+          $res .= $index2[rand(0, strlen($index2)-1)];
+      }
+      return $res;
+  }
+}
