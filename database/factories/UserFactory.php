@@ -21,7 +21,7 @@ $factory->define(App\User::class, function (Faker $faker) {
       'Email' => $faker->unique()->safeEmail,
       'AuthCode' => math_beuse::base62(),
       'IsNewMember' => 1,
-      'Role' => 0,
+      'Role' => 6,
     ];
 });
 

@@ -15,7 +15,6 @@ class CreateUsersTable extends Migration
     {
       if (!Schema::hasTable('users')) {
         Schema::create('users', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->integer('id')->autoIncrement();
             $table->string('Account',10)->comment('帳號')->unique();
             $table->string('Password',100);
@@ -24,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->char('AuthCode',10)->collation('utf8_unicode_ci');
             $table->boolean('IsNewMember',1);
             $table->integer('Role');
+            $table->foreign('Role')->references('Role')->on('role');
             $table->rememberToken();
             $table->timestamps();
           });

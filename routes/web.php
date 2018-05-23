@@ -24,6 +24,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //主頁(布告欄)
 Route::get('/NUTCAuditing', 'NutcAuditingController@index');
+Route::get('/permision', 'NutcAuditingController@permision');
+Route::post('permision', 'NutcAuditingController@OneOfThePermision');
+
+
 //權限設定
 // Route::get('permision', 'NutcAuditingController@permision');
 //年度內部稽核計畫主頁

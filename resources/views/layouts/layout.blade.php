@@ -127,7 +127,7 @@
                     <ul class="sidebar-menu" data-widget="tree">
                         <li class="header text-center"><h4 class="main-title"><b>稽核管理系統</b></h4></li>
                         <li >
-                            <a href="#">
+                            <a href="NUTCAuditing">
                                 <i class="fa fa-home"></i>
                                 <span>佈告欄</span>
                                 <span class="pull-right-container">
@@ -146,6 +146,20 @@
                                 <li><a href="#"><i class="fa fa-circle-o"></i>修改密碼</a></li>
                             </ul>
                         </li>
+                          @if (Auth::user()->Role == 5)
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-lock"></i> <span>權限設定</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-circle-o"></i>更改用戶權限</a></li>
+                                <li><a href="permision"><i class="fa fa-circle-o"></i>更改身分權限</a></li>
+                            </ul>
+                        </li>
+                        @endif
                         <li class="treeview active">
                             <a href="#">
                                 <i class="fa fa-files-o"></i>
@@ -154,11 +168,8 @@
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul class="treeview-menu">
 
-                                @if (Auth::user()->Role == 5)
-                                  <li><a href="{{url('permision')}}"><i class="fa fa-circle-o"></i>權限設定</a></li>
-                                @endif
+                            <ul class="treeview-menu">
                                 <li><a href="{{url('NUTCAuditing/project/index')}}"><i class="fa fa-circle-o"></i>年度內部稽核計畫</a></li>
                                 <li><a href="#"><i class="fa fa-circle-o"></i>內部稽核計畫表</a></li>
                                 <li><a href="#"><i class="fa fa-circle-o"></i>內部稽核通知單</a></li>

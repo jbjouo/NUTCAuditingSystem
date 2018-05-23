@@ -12,7 +12,7 @@ class User extends Authenticatable
     protected $primaryKey ='id';
 
     protected $fillable = [
-        'Account','Password',
+        'Account','Password','Role',
     ];
 
     public function getAuthPassword()
@@ -24,4 +24,11 @@ class User extends Authenticatable
         'Password', 'remember_token',
     ];
     protected $table = "users";
+
+    public function hasOneRole()
+    {
+
+
+        return $this->hasOne('App\Role','Role','Role');
+    }
 }
