@@ -1,6 +1,5 @@
 @extends('layouts.layout')
 @section('content')
-
     <link rel="stylesheet" href="{{asset('/css/Auditing_Index.css')}}">
     <section class="content">
         <div class="">
