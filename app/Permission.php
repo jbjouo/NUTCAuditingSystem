@@ -11,4 +11,5 @@ class Permission extends Model
         'Role','Name',
     ];
     protected $table = "permission";
+
 }

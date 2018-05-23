@@ -156,7 +156,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#"><i class="fa fa-circle-o"></i>更改用戶權限</a></li>
-                                <li><a href="permision"><i class="fa fa-circle-o"></i>更改身分權限</a></li>
+                                <li><a href="permission"><i class="fa fa-circle-o"></i>更改身分權限</a></li>
                             </ul>
                         </li>
                         @endif

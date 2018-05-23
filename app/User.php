@@ -25,10 +25,7 @@ class User extends Authenticatable
     ];
     protected $table = "users";
 
-    public function hasOneRole()
-    {
-
-
+    public function hasOneRole(){
         return $this->hasOne('App\Role','Role','Role');
     }
 }

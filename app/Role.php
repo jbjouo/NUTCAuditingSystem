@@ -12,4 +12,8 @@ class Role extends Model
         'Role','Name',
     ];
     protected $table = "role";
+    public function hasManypermission()
+    {
+        return $this->hasMany('App\Permission','Role','Role');
+    }
 }
