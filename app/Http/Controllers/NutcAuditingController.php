@@ -21,13 +21,13 @@ class NutcAuditingController extends Controller
 	public function permision() {
 		$Role = Role::where('Role' ,'<>','5')->where('Role' ,'<>','6')->get();
 		$users = User::where('Role' ,'<>','5')->get();
-		return view('NutcAuditing.permision',['users'=>$users,'Role'=>$Role]);
+		return view('NutcAuditing.permission',['users'=>$users,'Role'=>$Role]);
 	}
 	public function OneOfThePermision(Request $request)
 	{
 		$permission = Permission::where('Role' , $request->role)->get();
 		return response()->json(array(
-			'permision'=>$permission,
+			'permission'=>$permission,
 		));
 	}
 }

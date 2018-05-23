@@ -3,8 +3,9 @@
 
   <div class="content">
     @foreach ($Role as $item)
-      <button id="{{$item->Role}}" type="button" name="button"class="btn btn-primary permision" value="{{$item->Role}}">{{$item->Name}}</button>
+      <button id="{{$item->Role}}" type="button" name="button"class="btn btn-primary permission" value="{{$item->Role}}">{{$item->Name}}</button>
     @endforeach
+    <hr>
     <div class="abc">
       <div>
             <div>
@@ -22,7 +23,7 @@
                                     <th class="text-center" width="12%">簽核</th>
                                 </tr>
                             </thead>
-                            <tbody id="permision_table">
+                            <tbody id="permission_table">
                             </tbody>
                         </table>
                     </div>
@@ -33,11 +34,11 @@
   </div>
   <meta name="_token" content="{{ csrf_token() }}"/>
   <script type="text/javascript">
-    $('.permision').click(function() {
+    $('.permission').click(function() {
       var value = this.value;
       $.ajax({
         type : 'post',
-        url : "{{url('permision')}}",
+        url : "{{url('permission')}}",
         data : {
           role:value,
         },
@@ -47,9 +48,9 @@
         },
         success: function (data) {
 
-          $('#permision_table').empty();
+          $('#permission_table').empty();
           $(".btn-success").toggleClass("btn-success",false);
-          $('.permision').toggleClass("btn-primary",true);
+          $('.permission').toggleClass("btn-primary",true);
           $("#"+value).toggleClass("btn-primary",false);
           $("#"+value).toggleClass("btn-success",true);
 
@@ -57,14 +58,14 @@
 
 
           var i;
-          for(i=1;i<=data.permision.length;i++){
-            var Append =data.permision[i-1].Append?"V":"";
-            var Modify =data.permision[i-1].Modify?"V":"";
-            var Cance =data.permision[i-1].Cance?"V":"";
-            var Search =data.permision[i-1].Search?"V":"";
-            var Approve =data.permision[i-1].Approve?"V":"";
-            $("#permision_table").append('<tr><td class="text-left">'+
-            data.permision[i-1].Name + '</td><td class="text-center">' +
+          for(i=1;i<=data.permission.length;i++){
+            var Append =data.permission[i-1].Append?"V":"";
+            var Modify =data.permission[i-1].Modify?"V":"";
+            var Cance =data.permission[i-1].Cance?"V":"";
+            var Search =data.permission[i-1].Search?"V":"";
+            var Approve =data.permission[i-1].Approve?"V":"";
+            $("#permission_table").append('<tr><td class="text-left">'+
+            data.permission[i-1].Name + '</td><td class="text-center">' +
             Append + '</td><td class="text-center">' +
             Modify + '</td><td class="text-center">' +
             Cance + '</td><td class="text-center">' +
