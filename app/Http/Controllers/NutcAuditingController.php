@@ -19,9 +19,8 @@ class NutcAuditingController extends Controller
 		return view('NutcAuditing.index');
 	}
 	public function permision() {
-		$Role = Role::where('Role' ,'<>','5')->where('Role' ,'<>','6')->get();
-		$users = User::where('Role' ,'<>','5')->get();
-		return view('NutcAuditing.permission',['users'=>$users,'Role'=>$Role]);
+		$Role = Role::where('Role' ,'<>','4')->where('Role' ,'<>','5')->where('Role' ,'<>','6')->get();
+		return view('NutcAuditing.permission',['Role'=>$Role]);
 	}
 	public function OneOfThePermision(Request $request)
 	{

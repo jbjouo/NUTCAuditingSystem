@@ -37,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label>類別</label>
-                            <select name="Data.Audit_class" class="form-control">
+                            <select name="Audit_class" class="form-control">
                               <option value="AN">年度</option>
                               <option value="PR">專案</option>
                               <option value="IN">盤點</option>

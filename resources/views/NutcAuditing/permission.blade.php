@@ -15,7 +15,7 @@
                         <table id="example2" class="table table-bordered table-hover ">
                             <thead>
                                 <tr>
-                                    <th  width="40%">項目</th>
+                                    <th class="text-center" width="40%">項目</th>
                                     <th class="text-center" width="12%">新增</th>
                                     <th class="text-center" width="12%">修改</th>
                                     <th class="text-center" width="12%">取消</th>

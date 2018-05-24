@@ -172,8 +172,7 @@
                             </a>
 
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i>歷年稽核資料</a></li>
-                            <li><a href="{{url('project/index')}}"><i class="fa fa-circle-o"></i>年度內部稽核計畫</a></li>
+                            <li><a href="{{url('project/index')}}"><i class="fa fa-circle-o"></i>稽核計畫</a></li>
                             <li><a href="#"><i class="fa fa-circle-o"></i>內部稽核計畫表</a></li>
                             <li><a href="#"><i class="fa fa-circle-o"></i>內部稽核通知單</a></li>
                             <li><a href="#"><i class="fa fa-circle-o"></i>稽核查檢表</a></li>

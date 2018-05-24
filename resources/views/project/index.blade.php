@@ -16,36 +16,36 @@
                       <!-- /.box-header -->
                       <div class="box-body">
                           <div class="btn-group" style="margin-bottom:10px;">
-                            <a href="{{url('project/create')}}"><button type="button" name="button" class = "btn btn-block btn-default">新增年度計畫</button></a>
+                            <a href="{{url('project/create')}}"><button type="button" name="button" class = "btn btn-block btn-default">新增計畫</button></a>
                           </div>
                           <div class="btn-group" style="margin-bottom:10px;">
                             <button type="button" name="button" class = "btn btn-block btn-default">黑暗大法術</button>
                           </div>
                           <table id="example2" class="table table-bordered table-hover">
-                            @if (false)
-                              <tbody>
+                            <thead>
+                              <th class="text-center" width="10%">年度</th>
+                              <th class="text-center" width="10%">編號</th>
+                              <th class="text-center" >稽核範圍</th>
+                              <th class="text-center" >稽核重點</th>
+                              <th class="text-center" width="10%">狀態</th>
+                            </thead>
+                            <tbody>
+                              @if (true)
+                                @foreach ($projects as $project)
+                                  <tr>
+                                    <td class="text-center">{{$project->Year}}</td>
+                                    <td class="text-center">{{$project->Year}}-{{$project->Audit_class}}-{{$project->NumberOfYear}}</td>
+                                    <td >{!!html_entity_decode($project->Audit_scope)!!}</td>
+                                    <td >{!!html_entity_decode($project->Audit_focus)!!}</td>
+                                    <td class="text-center">{{$project->Status}}</td>
+                                  </tr>
+                                @endforeach
+                              @else
                                 <tr>
-                                  <td class="text-center" width="30%">年度</td>
-                                  <td></td>
+                                  <td>目前未有年度計畫</td>
                                 </tr>
-                                <tr>
-                                  <td class="text-center">編號</td>
-                                  <td></td>
-                                </tr>
-                                <tr>
-                                  <td class="text-center">稽核範圍</td>
-                                  <td></td>
-                                </tr>
-                                <tr>
-                                  <td class="text-center">稽核重點</td>
-                                  <td></td>
-                                </tr>
-                              </tbody>
-                            @else
-                              <tr>
-                                <td>目前未有稽核中年度計畫</td>
-                              </tr>
-                            @endif
+                              @endif
+                            </tbody>
                           </table>
                       </div>
                   </div>
