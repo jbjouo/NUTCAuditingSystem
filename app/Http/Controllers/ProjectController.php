@@ -35,4 +35,8 @@ class ProjectController extends Controller
       ]);
       return redirect('project/index');
     }
+    public function item($id)
+  	{
+  		return view('project.browse');
+  	}
 }

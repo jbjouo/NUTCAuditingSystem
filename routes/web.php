@@ -36,3 +36,5 @@ Route::get('/home', 'HomeController@index')->name('home');
   //新增年度內部稽核計畫
   Route::get('project/create','ProjectController@create');
   Route::post('project/create','ProjectController@add');
+
+  Route::get('project/browse/{id}','ProjectController@item');
