@@ -37,6 +37,7 @@ class ProjectController extends Controller
     }
     public function item($id)
   	{
-  		return view('project.browse');
+      $project = Project::find($id);
+  		return view('project.browse',['project'=>$project]);
   	}
 }

@@ -31,12 +31,12 @@
                           <tbody>
                             @if (true)
                               @foreach ($projects as $project)
-                                  <tr class = "project p_{{$project->id}}" p_id="{{$project->id}}">
-                                    <a id ="a_{{$project->id}}"   href="{{url('project/browse/')}}/{{$project->id}}"></a>
+                                  <tr style="cursor: pointer;"  class = "project p_{{$project->id}}" p_id="{{$project->id}}">
+                                    <a  id ="a_{{$project->id}}"   href="{{url('project/browse/')}}/{{$project->id}}"></a>
                                     <td class="text-center">{{$project->Year}}</td></a>
                                     <td class="text-center">{{$project->Year}}-{{$project->Audit_class}}-{{$project->NumberOfYear}}</td>
-                                    <td >{!!html_entity_decode($project->Audit_scope)!!}</td>
-                                    <td >{!!html_entity_decode($project->Audit_focus)!!}</td>
+                                    <td class="limit_word" >{!!html_entity_decode($project->Audit_scope)!!}</td>
+                                    <td class="limit_word">{!!html_entity_decode($project->Audit_focus)!!}</td>
                                     <td class="text-center">{{$project->Status}}</td>
                                   </tr>
                               @endforeach
@@ -59,11 +59,18 @@
     <script type="text/javascript">
       $('.project').click(function() {
         var id = $(this).attr("p_id");
-        console.log(id);
+
         if ($(this).hasClass('p_'+id)) {
           document.getElementById("a_"+id).click();
         }
       });
+      var $len = 30; // 超過50個字以"..."取代
+          $(".limit_word").each(function(){
+              if($(this).text().length > $len){
+                  var $text=$(this).text().substring(0,$len-1)+"...";
+                  $(this).text($text);
+              }
+          });
     </script>
 
 
