@@ -14,15 +14,17 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div>
-                            <div class="pull-left btn-group" style="margin-bottom:10px;">
-                                <a class="btn btn-block btn-primary" href="" id="sendnotice" role="button">修改</a>
-                            </div>
-                            <div class="pull-left btn-group" style="margin-bottom:10px;">
-                                <a class="btn btn-block btn-default" href="" id="sendnotice" role="button">公告</a>
-                            </div>
-                            <div class="pull-right btn-group" style="margin-bottom:10px;">
-                                <a class="btn btn-block btn-default" href="{{url('project/index')}}" id="sendnotice" role="button">返回</a>
-                            </div>
+                          <div class="pull-left btn-group" style="margin-bottom:10px;">
+                              <a class="btn btn-block btn-default" href="{{url('project/index')}}" id="sendnotice" role="button">返回</a>
+                          </div>
+                          <div class="pull-right btn-group" style="margin-bottom:10px;">
+                              <a class="btn btn-block btn-default" href="" id="sendnotice" role="button">公告</a>
+                          </div>
+                          <div class="pull-right btn-group" style="margin-bottom:10px;">
+                              <a class="btn btn-block btn-primary" href="" id="sendnotice" role="button">修改</a>
+                          </div>
+
+
                         </div>
 
                         <table id="example2" class="table table-bordered table-hover">
