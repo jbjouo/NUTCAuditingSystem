@@ -49,6 +49,7 @@
         success: function (data) {
 
           $('#permission_table').empty();
+
           $(".btn-success").toggleClass("btn-success",false);
           $('.permission').toggleClass("btn-primary",true);
           $("#"+value).toggleClass("btn-primary",false);

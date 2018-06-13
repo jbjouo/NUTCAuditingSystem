@@ -13,10 +13,12 @@ class CreateRoleTable extends Migration
      */
     public function up()
     {
+      if (!Schema::hasTable('role')) {
         Schema::create('role', function (Blueprint $table) {
             $table->integer('Role')->primary();
             $table->string('Name',10);
         });
+      }
     }
 
     /**

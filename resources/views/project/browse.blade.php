@@ -44,6 +44,14 @@
                                     <th class="text-center" style="white-space:nowrap">重點</th>
                                     <td colspan="3" style="word-break:break-all">{!!html_entity_decode($project->Audit_focus)!!}</td>
                                 </tr>
+                                <tr>
+                                    <th class="text-center" style="white-space:nowrap">項目及期望</br>(稽核計畫表)</th>
+                                    <td colspan="3" style="word-break:break-all">
+                                      <a href="{{url('schedule/create/')}}/{{$project->id}}">
+                                      <button class="btn btn-block btn-default"style="width:80px;"  type="button" name="button">新增</button>
+                                      </a>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

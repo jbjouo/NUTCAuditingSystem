@@ -38,3 +38,6 @@ Route::get('/home', 'HomeController@index')->name('home');
   Route::post('project/create','ProjectController@add');
 
   Route::get('project/browse/{id}','ProjectController@item');
+
+  //新增內部稽核計畫表
+  Route::get('schedule/create/{id}','ScheduleController@create');
