@@ -13,8 +13,8 @@ class CreateScheduleTable extends Migration
      */
     public function up()
     {
-      if (!Schema::hasTable('schedule')) {
-        Schema::create('schedule', function (Blueprint $table) {
+      if (!Schema::hasTable('schedules')) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
             $table->integer('P_id');
             $table->foreign('P_id')->references('project')->on('id');

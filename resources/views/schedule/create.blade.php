@@ -5,6 +5,9 @@
 <script src="{{asset('js/moment.min.js')}}"></script>
 <script src="{{asset('js/bootstrap-datetimepicker.js')}}"></script>
 
+<form class="" action="{{url('schedule/create')}}/{{$project->id}}" method="post">
+  @csrf
+
 {{--
 @using (Html.BeginForm("Add", "Internal_Audit_Schedule", new { Account = Model.member.Account, P_Id = Model.project.Id }, FormMethod.Post)) { --}}
 <section class="content">
@@ -54,7 +57,7 @@
                             <label class="col-xs-10 text-left">
                               <div class="form-group">
                                   <div class='input-group date' id='datetimepicker6'>
-                                      <input type='text' class="form-control" />
+                                      <input type='text' class="form-control" name="start_date" />
                                       <span class="input-group-addon">
                                           <span class="glyphicon glyphicon-calendar"></span>
                                       </span>
@@ -68,7 +71,7 @@
                             <label class="col-xs-10 text-left">
                               <div class="form-group">
                                   <div class='input-group date' id='datetimepicker7'>
-                                      <input type='text' class="form-control" />
+                                      <input type='text' class="form-control" name="end_date" />
                                       <span class="input-group-addon">
                                           <span class="glyphicon glyphicon-calendar"></span>
                                       </span>
@@ -80,7 +83,7 @@
                             <label class="col-xs-2">稽核人員</label>
                             <label class="col-xs-10 text-left">{{Auth::user()->Name}}</label>
                         </div>
-                        
+
                         <div class="box-footer">
                             {{--
                             @Html.ValidationSummary() --}}
@@ -101,8 +104,11 @@
         CKEDITOR.replace('test');
         CKEDITOR.replace('test1');
         $(function () {
-            $('#datetimepicker6').datetimepicker();
+            $('#datetimepicker6').datetimepicker({
+              format:"YYYY-MM-DD HH:mm:ss"
+            });
             $('#datetimepicker7').datetimepicker({
+                format:"YYYY-MM-DD HH:mm:ss",
                 useCurrent: false //Important! See issue #1075
             });
             $("#datetimepicker6").on("dp.change", function (e) {
@@ -114,6 +120,7 @@
         });
     </script>
 </section>
+</form>
 {{-- } --}}
 
 @endsection

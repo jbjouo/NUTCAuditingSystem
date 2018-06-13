@@ -41,3 +41,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
   //新增內部稽核計畫表
   Route::get('schedule/create/{id}','ScheduleController@create');
+  Route::post('schedule/create/{id}','ScheduleController@add');
