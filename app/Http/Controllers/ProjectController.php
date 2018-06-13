@@ -40,4 +40,7 @@ class ProjectController extends Controller
       $project = Project::find($id);
   		return view('project.browse',['project'=>$project]);
   	}
+    public function test(){
+      
+    }
 }

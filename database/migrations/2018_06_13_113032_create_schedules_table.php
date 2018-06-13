@@ -30,7 +30,6 @@ class CreateSchedulesTable extends Migration
         });
       }
     }
-
     /**
      * Reverse the migrations.
      *
