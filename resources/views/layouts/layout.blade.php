@@ -91,7 +91,7 @@
                                     <div class="row text-center">
 
 
-                                        <a href="#">基本資料</a>
+                                        <a href="{{url('information/index')}}">基本資料</a>
 
 
                                     </div>
@@ -137,14 +137,14 @@
                             </a>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href="">
                                 <i class="fa fa-user"></i> <span>基本資料設定</span>
                                 <span class="pull-right-container">
                                     <i class="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i>基本資料</a></li>
+                            <li><a href="{{url('information/index')}}"><i class="fa fa-circle-o"></i>基本資料</a></li>
                             <li><a href="#"><i class="fa fa-circle-o"></i>修改密碼</a></li>
                         </ul>
                     </li>

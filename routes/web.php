@@ -15,12 +15,12 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-Auth::routes();
+  Auth::routes();
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('/home', 'HomeController@index')->name('home');
 
-//稽核系統
+  //稽核系統
   //主頁(布告欄)
 
   Route::get('/NUTCAuditing', 'NutcAuditingController@index');
@@ -42,3 +42,6 @@ Route::get('/home', 'HomeController@index')->name('home');
   //新增內部稽核計畫表
   Route::get('schedule/create/{id}','ScheduleController@create');
   Route::post('schedule/create/{id}','ScheduleController@add');
+  //個人資訊主頁
+  Route::get('information/index', 'InformationController@index');
+  //新增個人資訊
