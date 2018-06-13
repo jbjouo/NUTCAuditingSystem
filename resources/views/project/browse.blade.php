@@ -47,6 +47,12 @@
                                 <tr>
                                     <th class="text-center" style="white-space:nowrap">項目及期望</br>(稽核計畫表)</th>
                                     <td colspan="3" style="word-break:break-all">
+                                      @foreach ($schedules as $schedule)
+                                        {{$schedule->O_id}}-{{$schedule->Item_project}}
+                                      @endforeach
+
+
+
                                       <a href="{{url('schedule/create/')}}/{{$project->id}}">
                                       <button class="btn btn-block btn-default"style="width:80px;"  type="button" name="button">新增</button>
                                       </a>

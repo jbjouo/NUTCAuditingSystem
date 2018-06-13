@@ -42,6 +42,7 @@ Route::get('/', function () {
   //新增內部稽核計畫表
   Route::get('schedule/create/{id}','ScheduleController@create');
   Route::post('schedule/create/{id}','ScheduleController@add');
+  Route::get('schedule/index','ScheduleController@index');
   //個人資訊主頁
   Route::get('information/index', 'InformationController@index');
   //新增個人資訊

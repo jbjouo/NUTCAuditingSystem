@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use App\Schedule;
 
 class ProjectController extends Controller
 {
@@ -38,9 +39,10 @@ class ProjectController extends Controller
     public function item($id)
   	{
       $project = Project::find($id);
-  		return view('project.browse',['project'=>$project]);
+      $schedules = Schedule::where('P_id', $id)->get();
+  		return view('project.browse',['project'=>$project,'schedules'=>$schedules]);
   	}
     public function test(){
-      
+
     }
 }

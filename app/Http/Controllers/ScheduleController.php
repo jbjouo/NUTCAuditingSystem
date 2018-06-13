@@ -9,6 +9,20 @@ use Auth;
 class ScheduleController extends Controller
 {
     //
+    public function index()
+    {
+      $projects = Project::all();
+      $schedules = Schedule::all();
+      return view('schedule.index',['projects' => $projects]);
+    }
+
+    public function GetSchedule(Request $request)
+  	{
+      $schedules = Schedule::where('P_id', $request->id)->get();
+  		return response()->json(array(
+  			'schedules'=>$schedules,
+  		));
+  	}
     public function create($id)
     {
       $project = Project::find($id);
@@ -28,5 +42,6 @@ class ScheduleController extends Controller
         'Audit_user' =>Auth::user()->id,
         'Issend'=> 0,
       ]);
+      redirect('/schedule/index');
     }
 }
