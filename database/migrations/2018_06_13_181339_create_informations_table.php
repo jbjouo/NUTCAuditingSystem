@@ -20,7 +20,8 @@ class CreateInformationsTable extends Migration
             $table->date('date_Arrival');
             $table->string('phone');
             $table->integer('o_id');
-            $table->foreign('o_id')->references('id')->on('users');
+            $table->foreign('o_id')->references('id')->on('offices');
+            $table->foreign('id')->references('id')->on('users');
         });
       }
     }

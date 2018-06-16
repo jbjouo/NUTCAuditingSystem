@@ -16,33 +16,31 @@ Route::get('/', function () {
 });
 
   Auth::routes();
+  Route::middleware(['information'])->group(function () {
+    //稽核系統
+    //主頁(布告欄)
 
+    Route::get('/NUTCAuditing', 'NutcAuditingController@index');
 
-  Route::get('/home', 'HomeController@index')->name('home');
+    //權限設定
 
-  //稽核系統
-  //主頁(布告欄)
+    Route::get('/permission', 'NutcAuditingController@permision');
 
-  Route::get('/NUTCAuditing', 'NutcAuditingController@index');
+    Route::post('permission', 'NutcAuditingController@OneOfThePermision');
+    //年度內部稽核計畫主頁
+    Route::get('project/index', 'ProjectController@index');
 
-  //權限設定
+    //新增年度內部稽核計畫
+    Route::get('project/create','ProjectController@create');
+    Route::post('project/create','ProjectController@add');
 
-  Route::get('/permission', 'NutcAuditingController@permision');
+    Route::get('project/browse/{id}','ProjectController@item');
 
-  Route::post('permission', 'NutcAuditingController@OneOfThePermision');
-  //年度內部稽核計畫主頁
-  Route::get('project/index', 'ProjectController@index');
-
-  //新增年度內部稽核計畫
-  Route::get('project/create','ProjectController@create');
-  Route::post('project/create','ProjectController@add');
-
-  Route::get('project/browse/{id}','ProjectController@item');
-
-  //新增內部稽核計畫表
-  Route::get('schedule/create/{id}','ScheduleController@create');
-  Route::post('schedule/create/{id}','ScheduleController@add');
-  Route::get('schedule/index','ScheduleController@index');
-  //個人資訊主頁
-  Route::get('information/index', 'InformationController@index');
-  //新增個人資訊
+    //新增內部稽核計畫表
+    Route::get('schedule/create/{id}','ScheduleController@create');
+    Route::post('schedule/create/{id}','ScheduleController@add');
+    Route::get('schedule/index','ScheduleController@index');
+    //個人資訊主頁
+    Route::get('information/index', 'InformationController@index');
+  });
+Route::get('information/create', 'InformationController@create');

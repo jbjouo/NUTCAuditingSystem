@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Information;
-
+use App\Offices;
 class InformationController extends Controller
 {
   public function __construct()
@@ -16,7 +16,8 @@ class InformationController extends Controller
   }
   public function create()
   {
-    return view('informations.create');
+    $offices = Offices::get();
+    return view('information.create',['offices'=>$offices]);
   }
   public function add(Request $request)
   {
