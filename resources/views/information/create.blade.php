@@ -11,7 +11,10 @@
             <form action="{{url('information/create')}}" method="post">
               @csrf
                 <div class="form-group has-feedback row">
-                    <label class="col-xs-3">{{Auth::user()->name}}</label>
+                    <label class="col-xs-3">姓名</label>
+                    <label class="col-xs-9 text-left">
+                      {{ Auth::user()->Name  }}
+                    </label>
                 </div>
                 <div class="form-group has-feedback row">
                    <label class="col-xs-3">到職日期</label>

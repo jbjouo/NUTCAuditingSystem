@@ -14,46 +14,41 @@
                     <div class="box-body">
                         <br />
                         <div class="form-group">
-                            <label class="col-sm-4 control-label"></label>
+                            <label class="col-sm-4 control-label">姓名</label>
                             <div class="col-sm-8">
-                                <label class="control-label" style="font-weight:normal;"></label>
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label"></label>
-
-                            <div class="col-sm-8">
-                                <label class="control-label" style="font-weight:normal;"></label>
+                                <label class="control-label" style="font-weight:normal;">{{ Auth::user()->Name  }}</label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label"></label>
+                            <label class="col-sm-4 control-label">到職日期</label>
 
                             <div class="col-sm-8">
-                                <label class="control-label" style="font-weight:normal;"></label>
+                                <label class="control-label" style="font-weight:normal;">{{$information[0]->date_Arrival}}</label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-4 control-label"></label>
+                            <label class="col-sm-4 control-label">電話</label>
 
                             <div class="col-sm-8">
-                                <label class="control-label" style="font-weight:normal;"></label>
+                                <label class="control-label" style="font-weight:normal;">{{$information[0]->phone}}</label>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">職位</label>
 
+                            <div class="col-sm-8">
+                                <label class="control-label" style="font-weight:normal;">{{$information[0]->position}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">辦公室</label>
+
+                            <div class="col-sm-8">
+                                <label class="control-label" style="font-weight:normal;">{{$office[0]->name}}</label>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.box-body -->
-                    <div class="box-footer">
-                        <div class="pull-right">
-
-
-                            
-
-
-                        </div>
-                    </div>
-                    <!-- /.box-footer -->
                 </form>
             </div>
         </div>

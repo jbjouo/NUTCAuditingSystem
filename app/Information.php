@@ -10,4 +10,5 @@ class Information extends Model
       'id','position','date_Arrival','phone','o_id'
   ];
   protected $table = "informations";
+  public $timestamps = false;
 }

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 use App\Information;
-class CheckInformation
+class PreventCreateInformation
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,10 @@ class CheckInformation
     public function handle($request, Closure $next)
     {
       if(Information::where('id',Auth::user()->id)->exists()){
-        return $next($request);
-
+        return redirect("information/index");
       }else{
-        return redirect("information/create");
+        return $next($request);
       }
+
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Information;
 use App\Offices;
+use Auth;
 class InformationController extends Controller
 {
   public function __construct()
@@ -12,7 +13,9 @@ class InformationController extends Controller
       $this->middleware('auth');
   }
   public function index(){
-    return view('information.index');
+    $information = Information::where('id',Auth::user()->id)->get();
+    $office = Offices::where('id',$information[0]->o_id)->get();
+    return view('information.index',['information'=>$information,'office'=>$office]);
   }
   public function create()
   {
@@ -21,16 +24,14 @@ class InformationController extends Controller
   }
   public function add(Request $request)
   {
-    $NumberOfYear = $thisyearproject =Project::where('Year', $request->Year)->get()->count()+1;
-
-    $project = Project::create([
-      'Year' =>$request->Year ,
-      'Audit_scope'=>$request->Audit_scope,
-      'Audit_focus'=>$request->Audit_focus,
-      'Audit_class'=>$request->Audit_class,
-      'Status' =>'未稽核',
-      'NumberOfYear'=> $NumberOfYear,
+    $information = Information::create([
+      'id' =>Auth::user()->id  ,
+      'position'=>$request->position,
+      'date_Arrival'=>$request->date_Arrival,
+      'phone'=>$request->phone,
+      'o_id'=> $request->o_id,
     ]);
-    return redirect('project/index');
+
+    return redirect('information/index');
   }
 }
