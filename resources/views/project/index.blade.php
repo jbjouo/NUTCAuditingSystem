@@ -9,8 +9,6 @@
   </section>
     <!-- Main content -->
   <section class="content">
-      <div>
-          <div>
               <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -49,8 +47,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
     </section>
     <div class="123a">
 

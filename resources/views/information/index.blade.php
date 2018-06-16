@@ -1,13 +1,14 @@
 @extends('layouts.layout')
 @section('content')
-    <link rel="stylesheet" href="{{asset('/css/Auditing_Index.css')}}">
-    <section class="content">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title" style="font-family: Microsoft JhengHei;">基本資料</h3>
-                </div>
+<section class="content-header">
+  <center>
+    <h2 style="font-family:'Microsoft JhengHei';">
+      基本資料
+    </h2>
+  </center>
+</section>
+        <div class="row" style="width:400px; margin:0px auto; font-size:20px">
+            <div class="box box-info ">
                 <!-- /.box-header -->
                 <!-- form start -->
                 <form class="form-horizontal">
@@ -48,11 +49,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="box-footer">
+                      <a href="{{url('information/edit')}}" class="btn btn-primary" >修改</a>
+                    </div>
                     <!-- /.box-body -->
                 </form>
             </div>
         </div>
-    </div>
-</section>
 
 @endsection

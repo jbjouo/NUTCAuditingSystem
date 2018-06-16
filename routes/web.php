@@ -42,7 +42,8 @@ Route::get('/', function () {
     Route::get('schedule/index','ScheduleController@index');
     //個人資訊主頁
     Route::get('information/index', 'InformationController@index');
-
+    Route::get('information/edit', 'InformationController@edit');
+    Route::post('information/edit', 'InformationController@update');
   });
   Route::middleware(['preventInfor'])->group(function () {
     //新增個人資訊 若已存在則不會進入

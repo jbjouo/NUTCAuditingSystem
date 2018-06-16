@@ -24,7 +24,7 @@ class InformationController extends Controller
   }
   public function add(Request $request)
   {
-    $information = Information::create([
+    Information::create([
       'id' =>Auth::user()->id  ,
       'position'=>$request->position,
       'date_Arrival'=>$request->date_Arrival,
@@ -34,4 +34,19 @@ class InformationController extends Controller
 
     return redirect('information/index');
   }
+  public function edit(){
+    $information = Information::where('id',Auth::user()->id)->get();
+    $offices = Offices::get();
+    return view('information.edit',['information'=>$information,'offices'=>$offices]);
+  }
+  public function update(Request $request){
+    Information::where('id', Auth::user()->id)->update([
+      'position'=>$request->position,
+      'date_Arrival'=>$request->date_Arrival,
+      'phone'=>$request->phone,
+      'o_id'=> $request->o_id,
+    ]);
+    return redirect('information/index');
+  }
+
 }
