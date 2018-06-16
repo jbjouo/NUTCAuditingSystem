@@ -61,11 +61,11 @@
 
         <!-- /.form-box -->
     </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker6').datetimepicker({
+              format:"YYYY-MM-DD HH:mm:ss"
+            });
+          });
+    </script>
 @endsection
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker6').datetimepicker({
-          format:"YYYY-MM-DD HH:mm:ss"
-        });
-      });
-</script>
