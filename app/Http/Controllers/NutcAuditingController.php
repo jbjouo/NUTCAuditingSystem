@@ -29,4 +29,7 @@ class NutcAuditingController extends Controller
 			'permission'=>$permission,
 		));
 	}
+	public function resend(){
+		return view('user.authResend');
+	}
 }
