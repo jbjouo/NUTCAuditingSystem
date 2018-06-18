@@ -50,3 +50,5 @@ Route::get('/', function () {
     Route::get('information/create', 'InformationController@create');
     Route::post('information/create', 'InformationController@add');
   });
+
+  Route::get('/register/{Account}&{AuthCode}', 'UserController@EmailValidate');
