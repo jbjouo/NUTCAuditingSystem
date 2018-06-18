@@ -12,7 +12,7 @@ class User extends Authenticatable
     protected $primaryKey ='id';
 
     protected $fillable = [
-        'Account','Password','Role',
+        'Account','Password','Role','Name','Email','AuthCode','IsNewMember'
     ];
 
     public function getAuthPassword()
