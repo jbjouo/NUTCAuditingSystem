@@ -125,8 +125,8 @@ class RegisterController extends Controller
     }
 
     public function sendRegisterEmail($Account){
-        $member=User::find($Account)->getAttributes();
-        if(($member['AuthCode'])!=null){
+        $member=User::where('Account',$Account)->get();
+        if(($member[0]->AuthCode)!=null){
             //寄信
             //填寫寄信人信箱
             $from = [
@@ -137,14 +137,14 @@ class RegisterController extends Controller
 
             //填寫收信人信箱
             $to = [
-                'email'=>$member['Email'],
-                'name'=>$member['Name']
+                'email'=>$member[0]->Email,
+                'name'=>$member[0]->Name
             ];
 
             //信件的內容
             $data = [
-                'username' =>$member['Name'],
-                'ValidateUrl' =>url("/register/{$member['Account']}&{$member['AuthCode']}")
+                'username' =>$member[0]->Name,
+                'ValidateUrl' =>url("/register/{$member[0]->Account}&{$member[0]->AuthCode}")
                  ];
             //寄出信件
             Mail::send('layouts.RegisterEmailTemplate', $data, function($message) use ($from, $to) {
