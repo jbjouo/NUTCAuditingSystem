@@ -8,7 +8,7 @@ use Auth;
 use App\User;
 use App\Role;
 use App\Permission;
-
+use Mail;
 class NutcAuditingController extends Controller
 {
 	public function __construct()
@@ -30,6 +30,40 @@ class NutcAuditingController extends Controller
 		));
 	}
 	public function resend(){
+		$member=User::where('Account',Auth::user()->Account)->get();
+		if($member[0]->AuthCode==''){
+			return redirect('NUTCAuditing');
+		}
 		return view('user.authResend');
+	}
+	public function sendAuthEmail(Request $request){
+			$member=User::where('Account',$request->Account)->get();
+			if(($member[0]->AuthCode)!=null){
+					//寄信
+					//填寫寄信人信箱
+					$from = [
+							'email'=>'junreal0123@gmail.com',
+							'name'=>'稽核系統',
+							'subject'=>'稽核系統驗證信'
+					];
+
+					//填寫收信人信箱
+					$to = [
+							'email'=>$member[0]->Email,
+							'name'=>$member[0]->Name
+					];
+
+					//信件的內容
+					$data = [
+							'username' =>$member[0]->Name,
+							'ValidateUrl' =>url("/register/{$member[0]->Account}&{$member[0]->AuthCode}")
+							 ];
+					//寄出信件
+					Mail::send('layouts.RegisterEmailTemplate', $data, function($message) use ($from, $to) {
+							$message->from($from['email'], $from['name']);
+							$message->to($to['email'], $to['name'])->subject($from['subject']);
+					});
+			}
+			return view('user.authResend');
 	}
 }

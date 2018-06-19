@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 use App\Information;
+use app\User;
 class CheckInformation
 {
     /**
@@ -16,6 +17,7 @@ class CheckInformation
      */
     public function handle($request, Closure $next)
     {
+      
       if(Information::where('id',Auth::user()->id)->exists()){
         return $next($request);
 

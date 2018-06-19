@@ -17,7 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('resend','NutcAuditingController@resend');
-    Route::middleware(['authCheck'])->group(function () {
+Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
+     Route::middleware(['authCheck'])->group(function () {
       Route::middleware(['information'])->group(function () {
         //稽核系統
         //主頁(布告欄)
@@ -55,5 +56,5 @@ Route::get('resend','NutcAuditingController@resend');
 
 
 
-   });
+  });
 Route::get('/register/{Account}&{AuthCode}', 'Auth\RegisterController@EmailValidate');

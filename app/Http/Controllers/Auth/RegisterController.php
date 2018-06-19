@@ -162,8 +162,7 @@ class RegisterController extends Controller
     public function CheckAuth($Account,$AuthCode){
         $user =User::where('Account',$Account)->get();
         if ($user[0] -> AuthCode ==$AuthCode){
-            $user[0] -> AuthCode ='';
-            $user[0] ->save();
+          User::where('Account',$Account)->update(['AuthCode' => '']);
             return '驗證成功';
         }else{
             return  '驗證失敗';
