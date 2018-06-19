@@ -13,7 +13,7 @@ class CreateInformationsTable extends Migration
      */
     public function up()
     {
-      if (!Schema::hasTable('infromations')) {
+      if (!Schema::hasTable('informations')) {
         Schema::create('informations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('position');
