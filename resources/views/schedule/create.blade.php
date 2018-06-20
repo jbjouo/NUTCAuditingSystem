@@ -36,7 +36,9 @@
                             <label class="col-xs-2">受查單位</label>
                             <label class="col-xs-10 text-left">
                                   <select class="form-control" name="O_id">
-                                    <option value="1">行政單位</option>
+                                    @foreach ($offices as $office)
+                                      <option value="{{$office->id}}">{{$office->name}}</option>
+                                    @endforeach
                                   </select>
                                 </label>
                         </div>

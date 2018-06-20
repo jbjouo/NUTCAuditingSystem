@@ -5,15 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Schedule;
+use App\Offices;
 use Auth;
+use Route;
 class ScheduleController extends Controller
 {
     //
     public function index()
     {
       $projects = Project::all();
-      $schedules = Schedule::all();
-      return view('schedule.index',['projects' => $projects]);
+      $p = $projects->first();
+      $schedules = Schedule::where('P_id',$p->id)->get();
+      return view('schedule.index',['projects' => $projects,'schedules'=>$schedules,'p_id'=>$p->id]);
+    }
+    public function index_id(Request $request)
+    {
+      $projects = Project::all();
+      $schedules = Schedule::where('P_id',$request->id)->get();
+      return view('schedule.index',['projects' => $projects,'schedules'=>$schedules,'p_id'=>$request->id]);
     }
 
     public function GetSchedule(Request $request)
@@ -26,7 +35,9 @@ class ScheduleController extends Controller
     public function create($id)
     {
       $project = Project::find($id);
-      return view('schedule.create',['project' => $project]);
+      $schedules = array_flatten(Schedule::select('O_id')->where('P_id',$id)->get()->toArray());
+      $offices = Offices::whereNotIn('id',$schedules)->get();
+      return view('schedule.create',['project' => $project,'offices'=>$offices]);
     }
     public function add(Request $request,$id)
     {
@@ -42,6 +53,6 @@ class ScheduleController extends Controller
         'Audit_user' =>Auth::user()->id,
         'Issend'=> 0,
       ]);
-      redirect('/schedule/index');
+      return redirect('schedule/index');
     }
 }

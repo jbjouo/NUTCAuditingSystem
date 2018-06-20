@@ -19,14 +19,21 @@
                     <div class=" col-xs-offset-8"></div>
                     <br>
                     <div class="col-xs-7">
-                      <select  class="project" name="">
-                        @foreach ($projects as $project)
-                          <option value="{{$project->id}}">{{$project->Year}}-AN-{{$project->NumberOfYear}}  {{$project->Status}}</option>
-                        @endforeach
-                      </select>
-                      <div class=" btn-group btn_bottom">
-                        <button class="btn btn-block btn-default" type="button" name="search">搜尋</button>
-                      </div>
+                      <form class="" action="{{url('schedule/index')}}" method="post">
+                        @csrf
+                        <select  class="project" name="id">
+                          @foreach ($projects as $project)
+                            @if ($p_id == $project ->id)
+                              <option selected="selected" value="{{$project->id}}">{{$project->Year}}-AN-{{$project->NumberOfYear}}  {{$project->Status}}</option>
+                            @else
+                              <option value="{{$project->id}}">{{$project->Year}}-AN-{{$project->NumberOfYear}}  {{$project->Status}}</option>
+                            @endif
+                          @endforeach
+                        </select>
+                        <div class=" btn-group btn_bottom">
+                          <input class="btn btn-block btn-default" type="submit" value="搜尋">
+                        </div>
+                      </form>
                     </div>
                     <br>
                     <br>
@@ -37,14 +44,23 @@
                             <table class="table table-hover" id="Data">
                                 <thead>
                                     <tr>
-                                        <th width="25%">受查單位</th>
-                                        <th width="25%">稽核項次</th>
-                                        <th width="25%">稽核項目</th>
-                                        <th width="25%">內容</th>
+                                        <th class="text-center" >全選  <input type="checkbox" name="all" onclick="check_all(this,'cb')" ></th>
+                                        <th class="text-center" width="30%">受查單位</th>
+                                        <th class="text-center" width="30%">稽核項次</th>
+                                        <th class="text-center" width="30%">稽核項目</th>
                                     </tr>
                                 </thead>
                                 <tbody id="schedule_content">
-
+                                  <form class="" action="" method="post">
+                                    @foreach ($schedules as $schedule)
+                                      <tr>
+                                        <td class="text-center"><input type="checkbox" name="cb" value="{{$schedule->id}}"></td>
+                                        <td class="text-center">{{$schedule->hasOneOffice->name}}</td>
+                                        <td class="text-center">{{$schedule->O_id}}-{{$schedule->Item_project}}</td>
+                                        <td class="text-center">{!!html_entity_decode($schedule->Category)!!}</td>
+                                      </tr>
+                                    @endforeach
+                                  </form>
                                 </tbody>
                             </table>
                             <div class="box-footer clearfix">
@@ -60,42 +76,12 @@
         </div>
     </div>
 </section>
-<meta name="_token" content="{{ csrf_token() }}"/>
 <script type="text/javascript">
-  // $('button[name="search"]').click(function(){
-  //   var id = $('.project').val();
-  //   getschedule(id);
-  // });
-  //
-  //
-  // function getschedule(id){
-  //   $.ajax({
-  //     type : 'post',
-  //     url : "{{url('schedule/getschedule')}}",
-  //     data : {
-  //       id:id,
-  //     },
-  //     dataType : 'json',
-  //     headers: {
-  //       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-  //     },
-  //     success: function (data) {
-  //       $('#schedule_content').empty();
-  //       $("#schedule_content").append("<tr>");
-  //       for(var key in data.schedules){
-  //         $("#schedule_content").append("<td>"+data.schedules[key].O_id+"</td>");
-  //         $("#schedule_content").append("<td>"+data.schedules[key].O_id+"</td>");
-  //         $("#schedule_content").append("<td>"+data.schedules[key].Category+"</td>");
-  //         $("#schedule_content").append("<td>"+data.schedules[key].O_id+"</td>");
-  //       }
-  //       $("#schedule_content").append("</tr>");
-  //     },
-  //     error: function(xhr, type){
-  //       alert('出錯惹！');
-  //     }
-  //   });
-  // }
-
+  function check_all(obj,cName)
+  {
+      var checkboxs = $("input[name="+cName+"]");
+      for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;}
+  }
 </script>
 
 @endsection
