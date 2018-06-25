@@ -11,10 +11,10 @@
 
                 <div class="box-header">
                     <div class=" btn-group btn_bottom ">
-                      <a href="{{url('schedule/create')}}" class = "btn btn-block btn-default">新增計畫表</a>
+                      <a href="{{url('schedule/create')}}/{{$p_id}}" class = "btn btn-block btn-default">新增計畫表</a>
                     </div>
                     <div class=" btn-group btn_bottom pull-right">
-                      <button class = "btn btn-block btn-default">發送通知單</button>
+                      <button id="notice" class = "btn btn-block btn-default">發送通知單</button>
                     </div>
                     <div class=" col-xs-offset-8"></div>
                     <br>
@@ -92,18 +92,10 @@
   $('#search').click(function() {
     var value = $('select[name="id"]').val();
     $('#a_search').attr("href", "{{url('schedule/index/')}}/"+value);
+    $('#notice').attr("href", "{{url('schedule/create/')}}/"+value);
     $('#a_search')[0].click();
   });
-  $('select[name="id"]').change(function(){
-    var all = $("input[name='all']");
-    all.prop('checked', false);
 
-    var checkboxs = $("input[name=cb]");
-    for(var i=0;i<checkboxs.length;i++){
-      checkboxs[i].checked = all.checked;
-    }
-
-  });
 </script>
 
 @endsection
