@@ -100,7 +100,7 @@
                                 <li class="user-body col-xs-6">
                                     <div class="row text-center">
 
-                                        <a href="#">修改密碼</a>
+                                        <a href="{{ url('information/change') }}">修改密碼</a>
 
                                     </div>
                                     <!-- /.row -->
@@ -145,7 +145,7 @@
                             </a>
                         <ul class="treeview-menu">
                             <li><a href="{{url('information/index')}}"><i class="fa fa-circle-o"></i>基本資料</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i>修改密碼</a></li>
+                            <li><a href="{{ url('information/change') }}"><i class="fa fa-circle-o"></i>修改密碼</a></li>
                         </ul>
                     </li>
                     @if (Auth::user()->Role == 5)

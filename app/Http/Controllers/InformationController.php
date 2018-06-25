@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Information;
 use App\Offices;
 use Auth;
+use App\User;
+use Hash;
+use Validator;
+
 class InformationController extends Controller
 {
   public function __construct()
@@ -48,5 +52,42 @@ class InformationController extends Controller
     ]);
     return redirect('information/index');
   }
-
+  public function change(){
+    return view('information/change');
+  }
+  public function changepassword(Request $request){
+      $user = User::where('id',auth::user()->id)->get();
+      $data = $request->only('old','new','newcheck');
+       $objValidator = Validator::make($data,[
+          'old' => [
+              'required',
+          ],
+          'new' => [
+              'required',
+              'between:6,20',
+              'regex:/^(([a-z]+[0-9]+)|([0-9]+[a-z]+))[a-z0-9]*$/i'
+          ],
+          'newcheck' =>'required|same:new',
+      ],[
+          'old.required' => '請輸入舊密碼',
+          'new.required' => '請輸入新密碼',
+          'new.between' => '新密碼需介於 6-20 字元',
+          'new.regex' => '新密碼需包含英文數字',
+          'newcheck.required' => '請輸入確認密碼',
+          'newcheck.same' => '兩次密碼不相同',
+      ]);
+       if ($objValidator->fails()){
+         return redirect('information/change')
+                        ->withErrors($objValidator->errors()->all())
+                        ->withInput();
+                        }
+       else {
+         if(Hash::check($request['old'],$user[0]->Password)){
+           User::Where('id',auth::user()->id)->update(['Password'=>Hash::make($request['new'])]);
+           return view('NutcAuditing/index');
+         }else{
+           return redirect('information/change');
+            }
+         }
+  }
 }
