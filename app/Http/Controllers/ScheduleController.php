@@ -18,11 +18,11 @@ class ScheduleController extends Controller
       $schedules = Schedule::where('P_id',$p->id)->get();
       return view('schedule.index',['projects' => $projects,'schedules'=>$schedules,'p_id'=>$p->id]);
     }
-    public function index_id(Request $request)
+    public function index_id($id)
     {
       $projects = Project::all();
-      $schedules = Schedule::where('P_id',$request->id)->get();
-      return view('schedule.index',['projects' => $projects,'schedules'=>$schedules,'p_id'=>$request->id]);
+      $schedules = Schedule::where('P_id',$id)->get();
+      return view('schedule.index',['projects' => $projects,'schedules'=>$schedules,'p_id'=>$id]);
     }
 
     public function GetSchedule(Request $request)
@@ -53,6 +53,7 @@ class ScheduleController extends Controller
         'Audit_user' =>Auth::user()->id,
         'Issend'=> 0,
       ]);
-      return redirect('schedule/index');
+
+      return redirect()->to('schedule/index/'.$id);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Schedule;
+use App\Offices;
 
 class ProjectController extends Controller
 {
@@ -40,9 +41,8 @@ class ProjectController extends Controller
   	{
       $project = Project::find($id);
       $schedules = Schedule::where('P_id', $id)->get();
-  		return view('project.browse',['project'=>$project,'schedules'=>$schedules]);
+      $offices_c = Offices::all()->count();
+      $Percent = ($schedules ->count()/$offices_c)*100;
+  		return view('project.browse',['project'=>$project,'schedules'=>$schedules,'Percent'=>$Percent]);
   	}
-    public function test(){
-
-    }
 }

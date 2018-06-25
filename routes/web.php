@@ -43,7 +43,7 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
         Route::get('schedule/create/{id}','ScheduleController@create');
         Route::post('schedule/create/{id}','ScheduleController@add');
         Route::get('schedule/index','ScheduleController@index');
-        Route::post('schedule/index','ScheduleController@index_id');
+        Route::get('schedule/index/{id}','ScheduleController@index_id');
         //個人資訊主頁
         Route::get('information/index', 'InformationController@index');
         Route::get('information/edit', 'InformationController@edit');

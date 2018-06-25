@@ -18,7 +18,7 @@
                               <a class="btn btn-block btn-default" href="{{url('project/index')}}" id="sendnotice" role="button">返回</a>
                           </div>
                           <div class="pull-right btn-group" style="margin-bottom:10px;">
-                              <a class="btn btn-block btn-default" href="" id="sendnotice" role="button">公告</a>
+                              <a class="btn btn-block btn-default" href="#" id="sendnotice" role="button">公告</a>
                           </div>
                           <div class="pull-right btn-group" style="margin-bottom:10px;">
                               <a class="btn btn-block btn-primary" href="" id="sendnotice" role="button">修改</a>
@@ -47,15 +47,43 @@
                                 <tr>
                                     <th class="text-center" style="white-space:nowrap">項目及期望</br>(稽核計畫表)</th>
                                     <td colspan="3" style="word-break:break-all">
-                                      @foreach ($schedules as $schedule)
-                                        <a href="#">{{$schedule->Item_project}}.{{$schedule->hasOneOffice->name}}</a>
-                                      @endforeach
+                                      <div class="row">
+                                        <div class="col-md-12 col-xs-12 col-sm-12 navbar-text" >
+                                          <div class="row">
+                                            <div class="col-md-10 col-xs-10 col-sm-10 text-center">
+                                              完成度
+                                            </div>
+                                            @if ($Percent != 100)
+                                              <div class="col-md-1 col-xs-12" >
+                                                <a href="{{url('schedule/create/')}}/{{$project->id}}">
+                                                  <button class="btn btn-block btn-default"style="width:80px;"  type="button" name="button">新增</button>
+                                                </a>
+                                              </div>
+                                            @endif
+                                          </div>
 
+                                        </div>
+                                        <div class="col-md-12 col-xs-12">
 
+                                          <div class="progress">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="{{$Percent}}" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: {{$Percent}}%;">
+                                              {{$Percent}}%
+                                            </div>
+                                          </div>
+                                        </div>
+                                          <div class="navbar-text col-md-10 col-xs-10 text-center">
+                                            受查單位
+                                          </div>
+                                        @foreach ($schedules as $schedule)
+                                          <div class="col-md-12 col-xs-12">
+                                            <div class="navbar-text">
+                                              <span class="label label-primary">{{$schedule->Item_project}}</span>
+                                              <a href="#">{{$schedule->hasOneOffice->name}}</a>
+                                            </div>
+                                          </div>
+                                        @endforeach
 
-                                      <a href="{{url('schedule/create/')}}/{{$project->id}}">
-                                      <button class="btn btn-block btn-default"style="width:80px;"  type="button" name="button">新增</button>
-                                      </a>
+                                      </div>
                                     </td>
                                 </tr>
                             </tbody>

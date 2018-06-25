@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-<link rel="stylesheet" href="~/Content/Browse.css">
+<link rel="stylesheet" href="{{asset('css/Browse.css')}}">
 <section class="content-header text-center">
     <h2>內部稽核計畫表</h2>
 </section>
@@ -14,26 +14,33 @@
                       <a href="{{url('schedule/create')}}" class = "btn btn-block btn-default">新增計畫表</a>
                     </div>
                     <div class=" btn-group btn_bottom pull-right">
-                      <a href="{{url('#')}}" class = "btn btn-block btn-default">發送通知單</a>
+                      <button class = "btn btn-block btn-default">發送通知單</button>
                     </div>
                     <div class=" col-xs-offset-8"></div>
                     <br>
                     <div class="col-xs-7">
-                      <form class="" action="{{url('schedule/index')}}" method="post">
-                        @csrf
-                        <select  class="project" name="id">
-                          @foreach ($projects as $project)
-                            @if ($p_id == $project ->id)
-                              <option selected="selected" value="{{$project->id}}">{{$project->Year}}-AN-{{$project->NumberOfYear}}  {{$project->Status}}</option>
-                            @else
-                              <option value="{{$project->id}}">{{$project->Year}}-AN-{{$project->NumberOfYear}}  {{$project->Status}}</option>
-                            @endif
-                          @endforeach
-                        </select>
-                        <div class=" btn-group btn_bottom">
-                          <input class="btn btn-block btn-default" type="submit" value="搜尋">
+
+                        <div class="row">
+
+                          <div class="col-md-6">
+                            <a id ="a_search" href=""></a>
+                            <select  class="project form-control" name="id">
+                              @foreach ($projects as $project)
+                                @if ($p_id == $project ->id)
+                                  <option selected="selected" value="{{$project->id}}">{{$project->Year}}-AN-{{$project->NumberOfYear}}  {{$project->Status}}</option>
+                                @else
+                                  <option value="{{$project->id}}">{{$project->Year}}-AN-{{$project->NumberOfYear}}  {{$project->Status}}</option>
+                                @endif
+                              @endforeach
+                            </select>
+                          </div>
+
+                          <div class="col-md-2 btn-group btn_bottom">
+                            <button id ="search" class="btn btn-block btn-default">搜尋</button>
+                          </div>
+
                         </div>
-                      </form>
+
                     </div>
                     <br>
                     <br>
@@ -82,6 +89,21 @@
       var checkboxs = $("input[name="+cName+"]");
       for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;}
   }
+  $('#search').click(function() {
+    var value = $('select[name="id"]').val();
+    $('#a_search').attr("href", "{{url('schedule/index/')}}/"+value);
+    $('#a_search')[0].click();
+  });
+  $('select[name="id"]').change(function(){
+    var all = $("input[name='all']");
+    all.prop('checked', false);
+
+    var checkboxs = $("input[name=cb]");
+    for(var i=0;i<checkboxs.length;i++){
+      checkboxs[i].checked = all.checked;
+    }
+
+  });
 </script>
 
 @endsection
