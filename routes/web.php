@@ -20,6 +20,7 @@ Route::get('resend','NutcAuditingController@resend');
 Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
      Route::middleware(['authCheck'])->group(function () {
       Route::middleware(['information'])->group(function () {
+
         //稽核系統
         //主頁(布告欄)
 
@@ -48,6 +49,10 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
         Route::get('information/index', 'InformationController@index');
         Route::get('information/edit', 'InformationController@edit');
         Route::post('information/edit', 'InformationController@update');
+        //修改密碼
+        Route::get('information/change','InformationController@change');
+        Route::post('information/change','InformationController@changepassword');
+        Route::get('project/announcement/{id}','ProjectController@announcement');
       });
       Route::middleware(['preventInfor'])->group(function () {
         //新增個人資訊 若已存在則不會進入
