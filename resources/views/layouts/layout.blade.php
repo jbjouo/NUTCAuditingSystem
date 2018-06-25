@@ -58,21 +58,25 @@
                         <!-- Notifications: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning" id="notice_num">
-                                        2
-                                    </span>
-                                </a>
+                              <i class="fa fa-bell-o"></i>
+                              @if (Auth::user()->hasmanyNotification->where('isread',0)->count()!=0)
+                                <span class="label label-warning" id="notice_num">
+                                    {{Auth::user()->hasmanyNotification->where('isread',0)->count()}}
+                                </span>
+                              @endif
+                            </a>
                             <ul class="dropdown-menu">
-                                <li class="header" id="notice_text">你有 1 個新通知</li>
+                                <li class="header" id="notice_text">你有 {{Auth::user()->hasmanyNotification->where('isread',0)->count()}} 個新通知</li>
                                 <li>
                                     <!-- inner menu: contains the actual data -->
                                     <ul class="menu">
+                                      @foreach (Auth::user()->hasmanyNotification as $Notification)
                                         <li>
-                                            <a href="#">
-                                                    <i class="fa fa-users text-aqua"></i>123
-                                                </a>
+                                          <a href="{{url($Notification->url)}}">
+                                              <i class="fa fa-users text-aqua"></i>{{$Notification->content}}
+                                          </a>
                                         </li>
+                                      @endforeach
                                     </ul>
                                 </li>
                                 <li class="footer"><a href="#">View all</a></li>

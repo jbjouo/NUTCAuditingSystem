@@ -17,9 +17,11 @@
                           <div class="pull-left btn-group" style="margin-bottom:10px;">
                               <a class="btn btn-block btn-default" href="{{url('project/index')}}" id="sendnotice" role="button">返回</a>
                           </div>
-                          <div class="pull-right btn-group" style="margin-bottom:10px;">
-                              <a class="btn btn-block btn-default" href="#" id="sendnotice" role="button">公告</a>
-                          </div>
+                          @if ($project->Status=='未稽核')
+                            <div class="pull-right btn-group" style="margin-bottom:10px;">
+                                <a class="btn btn-block btn-default" href="{{url('project/announcement')}}/{{$project->id}}" id="sendnotice" role="button">公告</a>
+                            </div>
+                          @endif
                           <div class="pull-right btn-group" style="margin-bottom:10px;">
                               <a class="btn btn-block btn-primary" href="" id="sendnotice" role="button">修改</a>
                           </div>

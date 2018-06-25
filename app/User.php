@@ -28,4 +28,8 @@ class User extends Authenticatable
     public function hasOneRole(){
         return $this->hasOne('App\Role','Role','Role');
     }
+    public function hasmanyNotification()
+    {
+      return $this->hasMany('App\Notification','u_id','id');
+    }
 }

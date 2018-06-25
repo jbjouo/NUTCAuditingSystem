@@ -13,9 +13,11 @@
                     <div class=" btn-group btn_bottom ">
                       <a href="{{url('schedule/create')}}/{{$p_id}}" class = "btn btn-block btn-default">新增計畫表</a>
                     </div>
-                    <div class=" btn-group btn_bottom pull-right">
-                      <button id="notice" class = "btn btn-block btn-default">發送通知單</button>
-                    </div>
+                    @if (DB::table('projects')->find($p_id)->Status=="公告中")
+                      <div class=" btn-group btn_bottom pull-right">
+                        <button id="notice" class = "btn btn-block btn-default">發送通知單</button>
+                      </div>
+                    @endif
                     <div class=" col-xs-offset-8"></div>
                     <br>
                     <div class="col-xs-7">
@@ -34,6 +36,7 @@
                               @endforeach
                             </select>
                           </div>
+
 
                           <div class="col-md-2 btn-group btn_bottom">
                             <button id ="search" class="btn btn-block btn-default">搜尋</button>
@@ -58,10 +61,15 @@
                                     </tr>
                                 </thead>
                                 <tbody id="schedule_content">
-                                  <form class="" action="" method="post">
+                                  <form class="notice" action="{{url('notice')}}" method="post">
+                                    @csrf
                                     @foreach ($schedules as $schedule)
                                       <tr>
-                                        <td class="text-center"><input type="checkbox" name="cb" value="{{$schedule->id}}"></td>
+                                        <td class="text-center">
+                                          @if (!$schedule->Issend)
+                                              <input type="checkbox" name="cb[]" value="{{$schedule->id}}">
+                                          @endif
+                                        </td>
                                         <td class="text-center">{{$schedule->hasOneOffice->name}}</td>
                                         <td class="text-center">{{$schedule->O_id}}-{{$schedule->Item_project}}</td>
                                         <td class="text-center">{!!html_entity_decode($schedule->Category)!!}</td>
@@ -86,7 +94,7 @@
 <script type="text/javascript">
   function check_all(obj,cName)
   {
-      var checkboxs = $("input[name="+cName+"]");
+      var checkboxs = $("input[name='cb[]']");
       for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;}
   }
   $('#search').click(function() {
@@ -95,7 +103,9 @@
     $('#notice').attr("href", "{{url('schedule/create/')}}/"+value);
     $('#a_search')[0].click();
   });
-
+  $('#notice').click(function(){
+    $('form[class="notice"').submit();
+  });
 </script>
 
 @endsection

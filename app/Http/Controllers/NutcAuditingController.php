@@ -8,6 +8,7 @@ use Auth;
 use App\User;
 use App\Role;
 use App\Permission;
+use App\Schedule;
 use Mail;
 class NutcAuditingController extends Controller
 {
@@ -65,5 +66,15 @@ class NutcAuditingController extends Controller
 					});
 			}
 			return view('user.authResend');
+	}
+	public function notice(Request $request)
+	{
+		foreach ($request->cb as $cb) {
+			Schedule::find($cb)->update([
+				'Issend'=>1
+			]);
+
+		}
+		return redirect(url('schedule/index'));
 	}
 }

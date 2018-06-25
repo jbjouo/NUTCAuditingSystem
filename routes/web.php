@@ -31,6 +31,8 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
         Route::get('/permission', 'NutcAuditingController@permision');
 
         Route::post('permission', 'NutcAuditingController@OneOfThePermision');
+
+        Route::post('notice', 'NutcAuditingController@notice');
         //年度內部稽核計畫主頁
         Route::get('project/index', 'ProjectController@index');
 

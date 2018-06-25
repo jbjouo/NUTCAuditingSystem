@@ -19,6 +19,7 @@ class CreateNotificationsTable extends Migration
             $table->integer('u_id');
             $table->string('content',200)->collation('utf8_unicode_ci');
             $table->string('url',100);
+            $table->boolean('isread',1);
             $table->timestamps();
             $table->foreign('u_id')->references('id')->on('users');
         });
