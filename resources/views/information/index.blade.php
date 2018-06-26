@@ -40,8 +40,8 @@
                             <div class="col-sm-8">
                                 <label class="control-label" style="font-weight:normal;">
                                   {{$information->position}}
-                                  @if ($information->position =="主管")
-                                    @if (Auth::user()->Role==6)
+                                  @if ($information->position == "主管")
+                                    @if (Auth::user()->Role==4)
                                       (未審核)
                                     @else
                                       (已審核)
