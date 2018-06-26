@@ -30,6 +30,10 @@ class User extends Authenticatable
     }
     public function hasmanyNotification()
     {
-      return $this->hasMany('App\Notification','u_id','id');
+      return $this->hasMany('App\Notification','u_id','id')->orderBy('id','desc');
+    }
+    public function hasOneInformation()
+    {
+      return $this->hasOne('App\Information','id','id');
     }
 }

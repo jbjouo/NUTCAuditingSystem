@@ -28,25 +28,29 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
 
         //權限設定
 
+        Route::get('/verification', 'NutcAuditingController@verification');
+        Route::post('/verification', 'NutcAuditingController@verification_user');
         Route::get('/permission', 'NutcAuditingController@permision');
 
         Route::post('permission', 'NutcAuditingController@OneOfThePermision');
 
-        Route::post('notice', 'NutcAuditingController@notice');
+
         //年度內部稽核計畫主頁
         Route::get('project/index', 'ProjectController@index');
 
         //新增年度內部稽核計畫
         Route::get('project/create','ProjectController@create');
         Route::post('project/create','ProjectController@add');
-
         Route::get('project/browse/{id}','ProjectController@item');
-
+        Route::get('project/announcement/{id}','ProjectController@announcement');
         //新增內部稽核計畫表
         Route::get('schedule/create/{id}','ScheduleController@create');
         Route::post('schedule/create/{id}','ScheduleController@add');
         Route::get('schedule/index','ScheduleController@index');
         Route::get('schedule/index/{id}','ScheduleController@index_id');
+        Route::post('Schedule/notice', 'ScheduleController@notice');
+        //內部稽核通知單
+        Route::get('notice/index','NoticeController@index');
         //個人資訊主頁
         Route::get('information/index', 'InformationController@index');
         Route::get('information/edit', 'InformationController@edit');
@@ -54,7 +58,7 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
         //修改密碼
         Route::get('information/change','InformationController@change');
         Route::post('information/change','InformationController@changepassword');
-        Route::get('project/announcement/{id}','ProjectController@announcement');
+
       });
       Route::middleware(['preventInfor'])->group(function () {
         //新增個人資訊 若已存在則不會進入

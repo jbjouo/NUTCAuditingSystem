@@ -10,20 +10,40 @@ use App\Role;
 use App\Permission;
 use App\Project;
 use App\Schedule;
+use App\Information;
+use App\Services\NotificationService;
 use Mail;
 class NutcAuditingController extends Controller
 {
+	public $notificationService;
 	public function __construct()
 	{
 			$this->middleware('auth');
+			$this->notificationService = new NotificationService();
 	}
 	public function index(){
-		$projects =Project::where('Status','<>','未稽核')->get();
+		$projects = Project::where('Status','<>','未稽核')->get();
 		return view('NutcAuditing.index',['projects'=>$projects]);
 	}
 	public function permision() {
 		$Role = Role::where('Role' ,'<>','4')->where('Role' ,'<>','5')->where('Role' ,'<>','6')->get();
 		return view('NutcAuditing.permission',['Role'=>$Role]);
+	}
+	public function verification()
+	{
+		$information =array_flatten(Information::select('id')->where('position','主管')->get()->toArray());
+		$users = User::wherein('id',$information)->where('Role','6')->get();
+		return view('NutcAuditing.verification',['uesrs' => $users]);
+	}
+	public function verification_user(Request $request)
+	{
+		foreach ($request->cb as $cb) {
+			User::find($cb)->update([
+				'Role'=>3
+			]);
+		}
+		$this->notificationService->Notification('some',$request->cb,'主管身分已審核','information/index');
+		return redirect('verification');
 	}
 	public function OneOfThePermision(Request $request)
 	{
@@ -69,14 +89,5 @@ class NutcAuditingController extends Controller
 			}
 			return view('user.authResend');
 	}
-	public function notice(Request $request)
-	{
-		foreach ($request->cb as $cb) {
-			Schedule::find($cb)->update([
-				'Issend'=>1
-			]);
 
-		}
-		return redirect(url('schedule/index'));
-	}
 }

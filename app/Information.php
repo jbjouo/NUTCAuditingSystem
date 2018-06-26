@@ -11,4 +11,8 @@ class Information extends Model
   ];
   protected $table = "informations";
   public $timestamps = false;
+  public function hasOneOffice()
+  {
+    return $this->hasOne('App\Offices','id','o_id');
+  }
 }

@@ -42,9 +42,9 @@
                                   {{$information->position}}
                                   @if ($information->position =="主管")
                                     @if (Auth::user()->Role==6)
-                                      (未驗證)
+                                      (未審核)
                                     @else
-                                      (驗證)
+                                      (已審核)
                                     @endif
                                   @endif
                                 </label>

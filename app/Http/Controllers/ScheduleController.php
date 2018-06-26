@@ -8,9 +8,16 @@ use App\Schedule;
 use App\Offices;
 use Auth;
 use Route;
+use App\Services\NotificationService;
+
 class ScheduleController extends Controller
 {
     //
+    public $notificationService;
+  	public function __construct()
+  	{
+  			$this->notificationService = new NotificationService();
+  	}
     public function index()
     {
       $projects = Project::all();
@@ -56,4 +63,13 @@ class ScheduleController extends Controller
 
       return redirect()->to('schedule/index/'.$id);
     }
+    public function notice(Request $request)
+  	{
+  		foreach ($request->cb as $cb) {
+  			Schedule::find($cb)->update([
+  				'Issend'=>1
+  			]);
+  		}
+  		return redirect(url('schedule/index'));
+  	}
 }
