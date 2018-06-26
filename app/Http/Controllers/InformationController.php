@@ -35,7 +35,7 @@ class InformationController extends Controller
       'phone'=>$request->phone,
       'o_id'=> $request->o_id,
     ]);
-
+    User::where('id',Auth::user()->id)->update(['Role'=>4]);
     return redirect('information/index');
   }
   public function edit(){

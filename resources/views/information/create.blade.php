@@ -29,15 +29,18 @@
                 <div class="form-group has-feedback row">
                     <label class="col-xs-3">電話</label>
                     <label class="col-xs-9 text-left">
-                      <input type="text" name="phone" >
+                      <input type="text" class = "form-control" name="phone" >
                     </label>
 
                 </div>
                 <div class="form-group has-feedback row">
                    <label class="col-xs-3">職位</label>
-                    <label class="col-xs-9 text-left">
-                      <input type="text" name="position" >
-                    </label>
+                   <label class="col-xs-9 text-left">
+                     <select class="form-control" name="position">
+                       <option value="主管">主管</option>
+                       <option value="職員">職員</option>
+                     </select>
+                   </label>
                 </div>
                 <div class="form-group has-feedback row">
                     <label class="col-xs-3">辦公室</label>

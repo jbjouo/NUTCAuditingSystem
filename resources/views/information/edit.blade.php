@@ -29,15 +29,18 @@
                 <div class="form-group has-feedback row">
                     <label class="col-xs-3">電話</label>
                     <label class="col-xs-9 text-left">
-                      <input type="text" name="phone" value="{{$information[0]->phone}}" >
+                      <input type="text" name="phone" class = "form-control" value="{{$information[0]->phone}}" >
                     </label>
 
                 </div>
                 <div class="form-group has-feedback row">
                    <label class="col-xs-3">職位</label>
-                    <label class="col-xs-9 text-left">
-                      <input type="text" name="position" value="{{$information[0]->position}}" >
-                    </label>
+                   <label class="col-xs-9 text-left">
+                     <select class="form-control" name="position">
+                       <option value="主管">主管</option>
+                       <option value="職員">職員</option>
+                     </select>
+                   </label>
                 </div>
                 <div class="form-group has-feedback row">
                     <label class="col-xs-3">辦公室</label>
