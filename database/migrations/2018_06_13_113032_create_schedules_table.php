@@ -20,6 +20,8 @@ class CreateSchedulesTable extends Migration
             $table->foreign('P_id')->references('id')->on('project');
             $table->integer('O_id');
             $table->foreign('O_id')->references('id')->on('offices');
+            $table->integer('U_id')->nullable();
+            $table->foreign('U_id')->references('id')->on('users');
             $table->integer('Item_project');
             $table->string('Category',1000)->collation('utf8_unicode_ci');
             $table->string('Focus',1000)->collation('utf8_unicode_ci');
