@@ -16,8 +16,7 @@ use Mail;
 class NutcAuditingController extends Controller
 {
 	public $notificationService;
-	public function __construct()
-	{
+	public function __construct(){
 			$this->middleware('auth');
 			$this->notificationService = new NotificationService();
 	}
@@ -29,20 +28,17 @@ class NutcAuditingController extends Controller
 		$Role = Role::where('Role' ,'<>','4')->where('Role' ,'<>','5')->where('Role' ,'<>','6')->get();
 		return view('NutcAuditing.permission',['Role'=>$Role]);
 	}
-	public function read()
-	{
+	public function read(){
 		$this->notificationService->read();
 		return response()->json(array(
 		));;
 	}
-	public function verification()
-	{
+	public function verification(){
 		$information =array_flatten(Information::select('id')->where('position','主管')->get()->toArray());
 		$users = User::wherein('id',$information)->where('Role','6')->get();
 		return view('NutcAuditing.verification',['uesrs' => $users]);
 	}
-	public function verification_user(Request $request)
-	{
+	public function verification_user(Request $request){
 		foreach ($request->cb as $cb) {
 			User::find($cb)->update([
 				'Role'=>3
@@ -51,8 +47,7 @@ class NutcAuditingController extends Controller
 		$this->notificationService->Notification('some',$request->cb,'主管身分已審核','information/index');
 		return redirect('verification');
 	}
-	public function OneOfThePermision(Request $request)
-	{
+	public function OneOfThePermision(Request $request){
 		$permission = Permission::where('Role' , $request->role)->get();
 		return response()->json(array(
 			'permission'=>$permission,
