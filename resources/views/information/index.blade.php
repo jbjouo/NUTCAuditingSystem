@@ -24,21 +24,30 @@
                             <label class="col-sm-4 control-label">到職日期</label>
 
                             <div class="col-sm-8">
-                                <label class="control-label" style="font-weight:normal;">{{$information[0]->date_Arrival}}</label>
+                                <label class="control-label" style="font-weight:normal;">{{$information->date_Arrival}}</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">電話</label>
 
                             <div class="col-sm-8">
-                                <label class="control-label" style="font-weight:normal;">{{$information[0]->phone}}</label>
+                                <label class="control-label" style="font-weight:normal;">{{$information->phone}}</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-4 control-label">職位</label>
 
                             <div class="col-sm-8">
-                                <label class="control-label" style="font-weight:normal;">{{$information[0]->position}}</label>
+                                <label class="control-label" style="font-weight:normal;">
+                                  {{$information->position}}
+                                  @if ($information->position =="主管")
+                                    @if (Auth::user()->Role==6)
+                                      (未驗證)
+                                    @else
+                                      (驗證)
+                                    @endif
+                                  @endif
+                                </label>
                             </div>
                         </div>
                         <div class="form-group">

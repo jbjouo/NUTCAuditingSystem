@@ -8,6 +8,7 @@ use Auth;
 use App\User;
 use App\Role;
 use App\Permission;
+use App\Project;
 use App\Schedule;
 use Mail;
 class NutcAuditingController extends Controller
@@ -17,7 +18,8 @@ class NutcAuditingController extends Controller
 			$this->middleware('auth');
 	}
 	public function index(){
-		return view('NutcAuditing.index');
+		$projects =Project::where('Status','<>','未稽核')->get();
+		return view('NutcAuditing.index',['projects'=>$projects]);
 	}
 	public function permision() {
 		$Role = Role::where('Role' ,'<>','4')->where('Role' ,'<>','5')->where('Role' ,'<>','6')->get();

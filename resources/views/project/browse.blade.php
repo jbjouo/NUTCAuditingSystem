@@ -68,7 +68,7 @@
                                         <div class="col-md-12 col-xs-12">
 
                                           <div class="progress">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="{{$Percent}}" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em;width: {{$Percent}}%;">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="{{$Percent}}" aria-valuemin="0" aria-valuemax="100" style="min-width: 3em;width: {{$Percent}}%;">
                                               {{$Percent}}%
                                             </div>
                                           </div>

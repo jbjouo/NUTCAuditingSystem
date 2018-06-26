@@ -133,7 +133,7 @@
                     <li class="header text-center">
                         <h4 class="main-title"><b>稽核管理系統</b></h4></li>
                     <li>
-                        <a href="NUTCAuditing">
+                        <a href="{{ url('NUTCAuditing') }}">
                                 <i class="fa fa-home"></i>
                                 <span>佈告欄</span>
                                 <span class="pull-right-container">

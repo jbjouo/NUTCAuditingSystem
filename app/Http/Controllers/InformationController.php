@@ -17,8 +17,8 @@ class InformationController extends Controller
       $this->middleware('auth');
   }
   public function index(){
-    $information = Information::where('id',Auth::user()->id)->get();
-    $office = Offices::where('id',$information[0]->o_id)->get();
+    $information = Information::find(Auth::user()->id);
+    $office = Offices::where('id',$information->o_id)->get();
     return view('information.index',['information'=>$information,'office'=>$office]);
   }
   public function create()

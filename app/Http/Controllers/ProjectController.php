@@ -46,7 +46,7 @@ class ProjectController extends Controller
       $project = Project::find($id);
       $schedules = Schedule::where('P_id', $id)->get();
       $offices_c = Offices::all()->count();
-      $Percent = ($schedules ->count()/$offices_c)*100;
+      $Percent = round(($schedules ->count()/$offices_c)*100,2);
   		return view('project.browse',['project'=>$project,'schedules'=>$schedules,'Percent'=>$Percent]);
   	}
     public function announcement($id)

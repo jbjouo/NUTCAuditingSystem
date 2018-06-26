@@ -39,7 +39,7 @@
 
 
                           <div class="col-md-2 btn-group btn_bottom">
-                            <button id ="search" class="btn btn-block btn-default">搜尋</button>
+                            <button id ="search" class="btn btn-block btn-default">查看</button>
                           </div>
 
                         </div>
