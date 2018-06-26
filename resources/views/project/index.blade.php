@@ -15,9 +15,6 @@
                         <div class="btn-group" style="margin-bottom:10px;">
                           <a href="{{url('project/create')}}"><button type="button" name="button" class = "btn btn-block btn-default">新增計畫</button></a>
                         </div>
-                        <div class="btn-group" style="margin-bottom:10px;">
-                          <button type="button" name="button" class = "btn btn-block btn-default">黑暗大法術</button>
-                        </div>
                         <table id="example2" class="table table-bordered table-hover">
                           <thead>
                             <th class="text-center" width="10%">年度</th>
