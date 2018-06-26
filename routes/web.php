@@ -52,6 +52,7 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
         Route::post('Schedule/notice', 'ScheduleController@notice');
         //內部稽核通知單
         Route::get('notice/index','NoticeController@index');
+        Route::post('notice/Assigned/{id}','NoticeController@Assigned');
         //個人資訊主頁
         Route::get('information/index', 'InformationController@index');
         Route::get('information/edit', 'InformationController@edit');

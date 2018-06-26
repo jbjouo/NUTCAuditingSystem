@@ -65,11 +65,13 @@ class ScheduleController extends Controller
     }
     public function notice(Request $request)
   	{
-  		foreach ($request->cb as $cb) {
-  			Schedule::find($cb)->update([
-  				'Issend'=>1
-  			]);
-  		}
+      if ($request->cb!=null) {
+        foreach ($request->cb as $cb) {
+    			Schedule::find($cb)->update([
+    				'Issend'=>1
+    			]);
+    		}
+      }
   		return redirect(url('schedule/index'));
   	}
 }
