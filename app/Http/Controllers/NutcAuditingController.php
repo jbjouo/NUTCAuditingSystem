@@ -35,7 +35,7 @@ class NutcAuditingController extends Controller
 	}
 	public function verification(){
 		$information =array_flatten(Information::select('id')->where('position','主管')->get()->toArray());
-		$users = User::wherein('id',$information)->where('Role','6')->get();
+		$users = User::wherein('id',$information)->where('Role','4')->get();
 		return view('NutcAuditing.verification',['uesrs' => $users]);
 	}
 	public function verification_user(Request $request){
