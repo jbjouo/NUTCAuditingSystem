@@ -29,6 +29,12 @@ class NutcAuditingController extends Controller
 		$Role = Role::where('Role' ,'<>','4')->where('Role' ,'<>','5')->where('Role' ,'<>','6')->get();
 		return view('NutcAuditing.permission',['Role'=>$Role]);
 	}
+	public function read()
+	{
+		$this->notificationService->read();
+		return response()->json(array(
+		));;
+	}
 	public function verification()
 	{
 		$information =array_flatten(Information::select('id')->where('position','主管')->get()->toArray());

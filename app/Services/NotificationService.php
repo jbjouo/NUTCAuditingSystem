@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\User;
 use App\Notification;
-
+use Auth;
 class NotificationService {
 
   public function Notification($value,$id,$content,$url)
@@ -29,5 +29,12 @@ class NotificationService {
         'isread'=>0,
       ]);
     }
+  }
+  public function read()
+  {
+
+    Notification::where('u_id',Auth::user()->id)->update([
+      'isread' => 1
+    ]);
   }
 }

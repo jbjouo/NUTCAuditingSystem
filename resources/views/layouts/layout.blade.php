@@ -56,9 +56,9 @@
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- Notifications: style can be found in dropdown.less -->
-                        <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <i class="fa fa-bell-o"></i>
+                        <li class="dropdown notifications-menu" >
+                            <a href="#" id="layout_notification" count="{{Auth::user()->hasmanyNotification->where('isread',0)->count()}}" class="dropdown-toggle" data-toggle="dropdown">
+                              <i class="fa fa-bell-o" ></i>
                               @if (Auth::user()->hasmanyNotification->where('isread',0)->count()!=0)
                                 <span class="label label-warning" id="notice_num">
                                     {{Auth::user()->hasmanyNotification->where('isread',0)->count()}}
@@ -71,7 +71,11 @@
                                     <!-- inner menu: contains the actual data -->
                                     <ul class="menu">
                                       @foreach (Auth::user()->hasmanyNotification as $Notification)
-                                        <li>
+                                        @if($Notification->isread ==0)
+                                          <li style="background-color:#edf2fa;">
+                                        @else
+                                          <li>
+                                        @endif
                                           <a href="{{url($Notification->url)}}">
                                               <i class="fa fa-users text-aqua"></i>{{$Notification->content}}
                                           </a>
@@ -214,5 +218,31 @@
         </div>
     </div>
 </body>
+<meta name="_token" content="{{ csrf_token() }}"/>
+<script type="text/javascript">
+  $("#layout_notification").click(function() {
+    var count = $(this).attr("count")
+    if(count!=0){
+      console.log(count);
+      $(this).attr("count",0);
+      $("#notice_num").empty();
+      read();
+    }
+  });
+  function read() {
+    $.ajax({
+      type : 'post',
+      url : "{{url('read')}}",
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      },
+      success: function (data) {
+      },
+      error: function(xhr, type){
+        alert('出錯惹！');
+      }
+    });
+  }
+</script>
 
 </html>

@@ -32,7 +32,7 @@
         </div>
     </div>
   </div>
-  <meta name="_token" content="{{ csrf_token() }}"/>
+  
   <script type="text/javascript">
     $('.permission').click(function() {
       var value = this.value;
