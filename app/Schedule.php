@@ -20,6 +20,10 @@ class Schedule extends Model
     {
         return $this->belongsTo('App\User','U_id','id');
     }
+    public function belongsToAudit_user()
+    {
+        return $this->belongsTo('App\User','Audit_user','id');
+    }
     public function hasOneOffice()
     {
         return $this->hasOne('App\Offices','id','O_id');
