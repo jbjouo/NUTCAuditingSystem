@@ -59,6 +59,13 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
         Route::post('notice/Assigned/{id}','NoticeController@Assigned');
         //內部稽核查檢表
         Route::get('check/index','CheckController@index');
+        Route::get('check/index/{id}','CheckController@index_id');
+        Route::get('check/create/{id}','CheckController@create');
+        Route::post('check/create/{id}','CheckController@add');
+        Route::get('check/browse/{id}','CheckController@browse');
+
+
+        //PDF
         Route::get('pdf','pdfController@pdftest');
 
       });

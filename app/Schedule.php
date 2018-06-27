@@ -24,4 +24,8 @@ class Schedule extends Model
     {
         return $this->hasOne('App\Offices','id','O_id');
     }
+    public function hasOneCheck()
+    {
+      return $this->hasOne('App\Checks','s_id','id');
+    }
 }
