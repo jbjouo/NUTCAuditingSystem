@@ -10,7 +10,8 @@
   </style>
 </head>
 <body>
-<img src="{{asset('/images/logo.gif')}}" width="130" >
+<br>
+<br>
 <h2>國立台中科技大學</h1>
 <h2>______年度內部稽核計畫</h2>
 <p >壹、稽核範圍</p>
