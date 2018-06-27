@@ -12,6 +12,7 @@ class pdfController extends Controller
       PDF::SetFont('stsongstdlight', '', 14);
       PDF::SetTitle('Hello World');
       PDF::AddPage('P');
+      PDF::SetMargins(30,0,30);
       PDF::WriteHTML(view('pdf.project',['data'=>$data])->render());
       PDF::Output('hello_world.pdf');
       //return view('pdf.project',['data'=>$data]);
