@@ -188,13 +188,16 @@
                             <li><a href="#"><i class="fa fa-circle-o"></i>稽核追蹤控管表</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview active">
                         <a href="#">
                                 <i class="fa fa-pie-chart"></i>
                                 <span>報表列印作業</span>
                                 <span class="pull-right-container">
                                 </span>
-                            </a>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{url('pdf')}}"><i class="fa fa-circle-o"></i>pdf測試</a></li>
+                        </ul>
                     </li>
                 </ul>
             </section>

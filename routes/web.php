@@ -59,12 +59,7 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
         Route::post('notice/Assigned/{id}','NoticeController@Assigned');
         //內部稽核查檢表
         Route::get('check/index','CheckController@index');
-
-
-
-
-
-
+        Route::get('pdf','pdfController@pdftest');
 
       });
       Route::middleware(['preventInfor'])->group(function () {
