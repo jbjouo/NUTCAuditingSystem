@@ -5,6 +5,7 @@
   <style>
   h2{text-align:center;}
   h5{text-align:right;}
+  table{text-align:center;}
   </style>
 </head>
 <body>
@@ -15,22 +16,22 @@
 <table border="1" cellspacing="3" cellpadding="4">
   <tr>
     <th>受查單位</th>
-    <th>稽核項次</th>
-    <th>稽核項目</th>
-    <th>稽核重點</th>
+    <th width="10%">稽核項次</th>
+    <th >稽核項目</th>
+    <th width="22%">稽核重點</th>
     <th width="15%">預定稽核時程</th>
     <th>稽核人員</th>
-    <th>稽核單位</th>
+    <th width="10%">稽核單位</th>
   </tr>
   @foreach ($data as $schedule)
   <tr>
       <td >{{$schedule->hasOneOffice->name}}</td>
-      <td>{{$schedule->Item_project}}</td>
+      <td width="10%">{{$schedule->Item_project}}</td>
       <td>{!!html_entity_decode($schedule->Category)!!}</td>
-      <td>{!!html_entity_decode($schedule->Focus)!!}</td>
+      <td width="22%">{!!html_entity_decode($schedule->Focus)!!}</td>
       <td width="15%">{{$schedule->Start_date }}~{{$schedule->End_date}}</td>
       <td>{{$schedule->belongsToAudit_user->name}}</td>
-      <td>稽核室</td>
+      <td width="10%">稽核室</td>
   </tr>
   @endforeach
 </table>
