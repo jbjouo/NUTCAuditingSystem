@@ -20,7 +20,7 @@ class CreateTracksTable extends Migration
             $table->foreign('c_id')->references('id')->on('checks');
             $table->dateTime('deadline');
             $table->string('content',1000)->collation('utf8_unicode_ci')->nullable();
-            $table->string('schedule',1000)->collation('utf8_unicode_ci')->nullable();
+            $table->dateTime('schedule')->nullable();
             $table->string('cost',1000)->collation('utf8_unicode_ci')->nullable();
             $table->string('benefit',1000)->collation('utf8_unicode_ci')->nullable();
             $table->dateTime('reply_time')->nullable();

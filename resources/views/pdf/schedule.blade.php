@@ -24,7 +24,7 @@
   </tr>
   @foreach ($data as $schedule)
   <tr>
-      <td>{{$schedule->hasOneOffice->name}}</td>
+      <td >{{$schedule->hasOneOffice->name}}</td>
       <td>{{$schedule->Item_project}}</td>
       <td>{!!html_entity_decode($schedule->Category)!!}</td>
       <td>{!!html_entity_decode($schedule->Focus)!!}</td>
