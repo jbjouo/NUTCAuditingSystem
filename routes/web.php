@@ -26,19 +26,23 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
 
         Route::get('/NUTCAuditing', 'NutcAuditingController@index');
 
-        //權限設定
+        //個人資訊主頁
+        Route::get('information/index', 'InformationController@index');
+        Route::get('information/edit', 'InformationController@edit');
+        Route::post('information/edit', 'InformationController@update');
+        //修改密碼
+        Route::get('information/change','InformationController@change');
+        Route::post('information/change','InformationController@changepassword');
 
+        //權限設定
         Route::get('/verification', 'NutcAuditingController@verification');
         Route::post('/verification', 'NutcAuditingController@verification_user');
         Route::get('/permission', 'NutcAuditingController@permision');
-
         Route::post('permission', 'NutcAuditingController@OneOfThePermision');
+        //通知已讀
         Route::post('read', 'NutcAuditingController@read');
-
-
         //年度內部稽核計畫主頁
         Route::get('project/index', 'ProjectController@index');
-
         //新增年度內部稽核計畫
         Route::get('project/create','ProjectController@create');
         Route::post('project/create','ProjectController@add');
@@ -53,13 +57,14 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
         //內部稽核通知單
         Route::get('notice/index','NoticeController@index');
         Route::post('notice/Assigned/{id}','NoticeController@Assigned');
-        //個人資訊主頁
-        Route::get('information/index', 'InformationController@index');
-        Route::get('information/edit', 'InformationController@edit');
-        Route::post('information/edit', 'InformationController@update');
-        //修改密碼
-        Route::get('information/change','InformationController@change');
-        Route::post('information/change','InformationController@changepassword');
+        //內部稽核查檢表
+        Route::get('check/index','CheckController@index');
+
+
+
+
+
+
 
       });
       Route::middleware(['preventInfor'])->group(function () {

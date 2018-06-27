@@ -24,11 +24,12 @@ class NoticeController extends Controller
       User::find($request->u_id)->update([
         'Role'=>2,
       ]);
+      
       Schedule::find($request->id)->update([
         'U_id' => $request->u_id,
         'Issend' => 2,
       ]);
-      
+
       return redirect('notice/index');
     }
 }
