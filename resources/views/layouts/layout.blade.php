@@ -184,8 +184,12 @@
                             <li><a href="{{url('schedule/index')}}"><i class="fa fa-circle-o"></i>內部稽核計畫表</a></li>
                             <li><a href="{{url('notice/index')}}"><i class="fa fa-circle-o"></i>內部稽核通知單</a></li>
                             <li><a href="{{url('check/index')}}"><i class="fa fa-circle-o"></i>稽核查檢表</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i>年度內部稽核報告表</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i>稽核追蹤控管表</a></li>
+                            @if (Auth::user()->Role==2)
+                              <li><a href="{{url('track/reply/index')}}"><i class="fa fa-circle-o"></i>稽核追蹤回復</a></li>
+                            @endif
+                            @if (Auth::user()->Role==5)
+                            <li><a href="{{url('track/index')}}"><i class="fa fa-circle-o"></i>稽核追蹤控管表</a></li>
+                            @endif
                         </ul>
                     </li>
                     <li class="treeview active">

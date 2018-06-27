@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 @section('content')
 <section class="content-header text-center">
-    <h2 style="font-family:'Microsoft JhengHei';">內部稽核查檢表</h2>
+    <h2 style="font-family:'Microsoft JhengHei';">內部稽核追蹤表</h2>
 </section>
 <section class="content">
     <div class=" row ">
@@ -42,23 +42,32 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" width="30%">受查單位</th>
-                                        <th class="text-center" width="30%">稽核時程</th>
-                                        <th class="text-center" width="30%">實際查核</th>
+                                        <th class="text-center" width="30%">回復狀態</th>
+                                        <th class="text-center" width="30%">管考建議</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @csrf
-                                    @foreach ($schedules as $schedule)
+                                    @foreach ($checks as $check)
                                     <tr>
-                                        <td class="text-center">{{$schedule->hasOneOffice->name}}</td>
-                                        <td class="text-center">{{$schedule->Start_date}}~{{$schedule->End_date}}</td>
+                                        <td class="text-center">{{$check->belongsToSchedule->hasOneOffice->name}}</td>
                                         <td class="text-center">
-                                          @if ($schedule->hasOneCheck!=null)
-                                            <a href="{{url('check/browse')}}/{{$schedule->hasOneCheck->id}}"><button class="btn btn-success">查看</button></a>
+                                          @if ($check->hasOneTrack!=null)
+                                            @if($check->hasOneTrack->reply_time!=null)
+                                              已回復
+                                            @else
+                                              等待回復
+                                            @endif
                                           @else
-                                            <a href="{{url('check/create')}}/{{$schedule->id}}"><button class="btn btn-primary">建立</button></a>
+                                            尚未通知
                                           @endif
-
+                                        </td>
+                                        <td class="text-center">
+                                          @if ($check->hasOneTrack==null)
+                                            <a href="{{url('track/create')}}/{{$check->id}}"><button class="btn btn-primary" type="button" name="button">通知</button></a>
+                                          @else
+                                            <a href="{{url('track/browse')}}/{{$check->hasOneTrack->id}}"><button class="btn btn-success" type="button" name="button">查看</button></a>
+                                          @endif
                                         </td>
                                     </tr>
                                     @endforeach
@@ -80,7 +89,7 @@
 <script type="text/javascript">
     $('#search').click(function() {
         var value = $('select[name="id"]').val();
-        $('#a_search').attr("href", "{{url('check/index')}}/" + value);
+        $('#a_search').attr("href", "{{url('track/index')}}/" + value);
         $('#a_search')[0].click();
     });
 </script>
