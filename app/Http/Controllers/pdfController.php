@@ -21,10 +21,22 @@ class pdfController extends Controller
       PDF::SetMargins(40,0,60);
       PDF::Image(asset('/images/logo.gif'), 140,7,50,15);
       PDF::WriteHTML(view('pdf.project',['data'=>$project])->render());
+      $a = array();
+      for($i=0;$i<count($schedule);$i++) {
+        $a[$i] =$schedule[$i];
+        if ($i %10 ==9){
+          PDF::AddPage('L');
+          PDF::SetMargins(20,0,20);
+          PDF::Image(asset('/images/logo.gif'),230,7,50,15);
+          PDF::WriteHTML(view('pdf.schedule',['data'=>$a])->render());
+          $a = array();
+        }
+      }
       PDF::AddPage('L');
       PDF::SetMargins(20,0,20);
       PDF::Image(asset('/images/logo.gif'),230,7,50,15);
-      PDF::WriteHTML(view('pdf.schedule',['data'=>$schedule])->render());
+      PDF::WriteHTML(view('pdf.schedule',['data'=>$a])->render());
+      
       PDF::Output('hello_world.pdf');
       //return view('pdf.schedule',['data'=>$schedule]);
     }

@@ -6,6 +6,11 @@
   h2{text-align:center;}
   h5{text-align:right;}
   table{text-align:center;}
+  @media print {
+  .new-page {
+    page-break-before: always;
+  }
+}
   </style>
 </head>
 <body>
@@ -26,7 +31,7 @@
   @foreach ($data as $schedule)
   <tr>
       <td >{{$schedule->hasOneOffice->name}}</td>
-      <td width="10%">{{$schedule->Item_project}}</td>
+      <td width="10%">{{$schedule->O_id}}-{{$schedule->Item_project}}</td>
       <td>{!!html_entity_decode($schedule->Category)!!}</td>
       <td width="22%">{!!html_entity_decode($schedule->Focus)!!}</td>
       <td width="15%">{{$schedule->Start_date }}~{{$schedule->End_date}}</td>
