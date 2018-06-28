@@ -109,7 +109,7 @@ class RegisterController extends Controller
         'Email' => $data['Email'],
         'AuthCode' => $this -> base62(),
         'IsNewMember' => 1,
-        'Role' => 0,
+        'Role' => 6,
       ]);
       $this -> sendRegisterEmail($data['Account']);
 
