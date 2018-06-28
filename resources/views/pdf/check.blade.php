@@ -28,7 +28,7 @@
       <td >{!!html_entity_decode($checks->belongsToSchedule->O_id)!!}</td>
       <td >{!!html_entity_decode($checks->belongsToSchedule->Focus)!!}</td>
       <td >{{$checks->result}}</td>
-      <td >{!!html_entity_decode($check->description)!!}</td>
+      <td >{!!html_entity_decode($checks->description)!!}</td>
       <td >{{$checks->supporting_information}}</td>
   </tr>
   @endforeach
