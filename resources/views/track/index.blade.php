@@ -53,8 +53,16 @@
                                         <td class="text-center">{{$check->belongsToSchedule->hasOneOffice->name}}</td>
                                         <td class="text-center">
                                           @if ($check->hasOneTrack!=null)
-                                            @if($check->hasOneTrack->reply_time!=null)
-                                              已回復
+                                            @if($check->hasOneTrack[0]->reply_time!=null)
+                                              @if ($check->hasOneTrack[0]->result!=null)
+                                                @if ($check->hasOneTrack[0]->result == "持續追蹤")
+                                                  {{$check->hasOneTrack[0]->result}}(等待下次通知)
+                                                @else
+                                                  {{$check->hasOneTrack[0]->result}}
+                                                @endif
+                                              @else
+                                                已回復
+                                              @endif
                                             @else
                                               等待回復
                                             @endif
@@ -63,10 +71,21 @@
                                           @endif
                                         </td>
                                         <td class="text-center">
-                                          @if ($check->hasOneTrack==null)
+                                          @if ($check->hasOneTrack[0]==null)
                                             <a href="{{url('track/create')}}/{{$check->id}}"><button class="btn btn-primary" type="button" name="button">通知</button></a>
                                           @else
-                                            <a href="{{url('track/browse')}}/{{$check->hasOneTrack->id}}"><button class="btn btn-success" type="button" name="button">查看</button></a>
+                                            @if ($check->hasOneTrack[0]->result!=null)
+                                              @if ($check->hasOneTrack[0]->result=="持續追蹤")
+                                                <a href="{{url('track/create')}}/{{$check->id}}"><button class="btn btn-primary" type="button" name="button">通知</button></a>
+                                              @else
+                                                {{$check->hasOneTrack[0]->result}}
+                                              @endif
+
+
+                                            @else
+                                              <a href="{{url('track/browse')}}/{{$check->hasOneTrack[0]->id}}"><button class="btn btn-success" type="button" name="button">查看</button></a>
+                                            @endif
+
                                           @endif
                                         </td>
                                     </tr>

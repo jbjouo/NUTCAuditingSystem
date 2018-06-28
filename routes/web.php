@@ -72,6 +72,7 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
         Route::get('track/reply/{id}','TrackController@reply');
         Route::post('track/reply/{id}','TrackController@reply_after');
         Route::get('track/browse/{id}','TrackController@browse');
+        Route::post('track/end/{id}','TrackController@end');
         //PDF
         Route::get('pdf','pdfController@pdftest');
 

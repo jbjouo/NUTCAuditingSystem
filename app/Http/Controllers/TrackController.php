@@ -8,6 +8,7 @@ use App\Schedule;
 use App\Checks;
 use App\Track;
 use Carbon\Carbon;
+use Auth;
 class TrackController extends Controller
 {
     public function index()
@@ -39,7 +40,9 @@ class TrackController extends Controller
     }
     public function reply_index()
     {
-      $tracks = Track::whereNull('result')->get();
+      $s_id = array_flatten(Schedule::where('U_id',Auth::user()->id)->select('id')->get()->toArray());
+      $c_id =array_flatten(Checks::wherein('s_id',$s_id)->select('id')->get()->toArray());
+      $tracks = Track::wherein('c_id',$c_id)->get();
       return view('track.reply_index',['tracks'=>$tracks]);
     }
     public function reply($id)
@@ -63,5 +66,13 @@ class TrackController extends Controller
     {
       $track = Track::find($id);
       return view('track.browse',['track'=>$track]);
+    }
+    public function end(Request $request,$id)
+    {
+      $track = Track::find($id);
+      $track->update([
+        'result' =>$request->result,
+      ]);
+      return redirect('track/index');
     }
 }

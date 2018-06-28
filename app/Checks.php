@@ -17,6 +17,6 @@ class Checks extends Model
       }
       public function hasOneTrack()
       {
-        return $this->hasOne('App\Track','c_id','id');
+        return $this->hasMany('App\Track','c_id','id')->orderBy('id','desc');
       }
 }
