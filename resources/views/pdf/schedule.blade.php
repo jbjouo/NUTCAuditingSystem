@@ -13,12 +13,12 @@
 }
   </style>
 </head>
-<body>
+<body id = "body">
 <br>
 <br>
 <h2>國立台中科技大學</h2>
 <h2>年度內部稽核計畫表</h2>
-<table border="1" cellspacing="3" cellpadding="4">
+<table border="1" cellspacing="3" cellpadding="4" id="a">
   <tr>
     <th>受查單位</th>
     <th width="10%">稽核項次</th>
@@ -39,6 +39,8 @@
       <td width="10%">稽核室</td>
   </tr>
   @endforeach
-</table>
+
+
+</table >
 </body>
 </html>

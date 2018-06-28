@@ -21,7 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('Name',50)->collation('utf8_unicode_ci');
             $table->string('Email',200);
             $table->char('AuthCode',10)->collation('utf8_unicode_ci');
-            $table->boolean('IsNewMember',1);
             $table->integer('Role');
             $table->foreign('Role')->references('Role')->on('role');
             $table->rememberToken();
