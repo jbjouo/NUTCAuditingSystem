@@ -29,7 +29,7 @@
       <td >{!!html_entity_decode($checks->belongsToSchedule->Focus)!!}</td>
       <td >{{$checks->result}}</td>
       <td >{!!html_entity_decode($checks->description)!!}</td>
-      <td >{{$checks->supporting_information}}</td>
+      <td ><a href="{{url('download')}}/{{$checks->id}}/{{$checks->supporting_information}}">{{$checks->supporting_information}}</a></td>
   </tr>
   @endforeach
 </table>
