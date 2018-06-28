@@ -1,9 +1,11 @@
 @extends('layouts.layout')
 @section('content')
 <link rel=stylesheet type="text/css" href="{{asset('css/bootstrap-datetimepicker.css')}}">
+<link rel=stylesheet type="text/css" href="{{asset('css/file.css')}}">
 <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
 <script src="{{asset('js/moment.min.js')}}"></script>
 <script src="{{asset('js/bootstrap-datetimepicker.js')}}"></script>
+
 <section class="content">
     <div class="row">
 
@@ -18,7 +20,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form action="{{url('check/create')}}/{{$schedule->id}}" method="post" role="form">
+                    <form action="{{url('check/create')}}/{{$schedule->id}}" method="post" role="form" enctype="multipart/form-data">
                         @csrf
                         <!-- text input -->
                         <input type="hidden" name="p_id" value="{{$project->id}}">
@@ -46,13 +48,22 @@
                         <div class="form-group row">
                             <label class="col-xs-2">查核情形說明</label>
                             <label class="col-xs-10 text-left">
-                              <textarea class="ckeditor" id="test" name="description" placeholder=""></textarea>
+                              <textarea class="ckeditor" id="test" name="description" placeholder="" required></textarea>
                             </label>
                         </div>
                         <div class="form-group row">
                             <label class="col-xs-2">佐證資料</label>
-                            <label class="col-xs-10 text-left">
-                              <textarea class="ckeditor" id="test1" name="supporting_information" placeholder=""></textarea>
+                            <label class="col-xs-10">
+
+                              <div class="input-group">
+                                  <label class="input-group-btn">
+                                      <span class="btn btn-primary">
+                                          選擇檔案&hellip; <input id="file" name="file" type="file" style="display: none;" multiple>
+                                      </span>
+                                  </label>
+                                  <input type="text" class="form-control" readonly>
+                              </div>
+
                             </label>
                         </div>
                         <div class="form-group row">
@@ -83,8 +94,32 @@
     </div>
     <!-- /.row -->
     <script type="text/javascript">
-        CKEDITOR.replace('test');
-        CKEDITOR.replace('test1');
+    CKEDITOR.replace('test');
+        $(function() {
+
+          // We can attach the `fileselect` event to all file inputs on the page
+          $(document).on('change', ':file', function() {
+            var input = $(this),
+                numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+          });
+
+          // We can watch for our custom `fileselect` event like this
+          $(document).ready( function() {
+              $(':file').on('fileselect', function(event, numFiles, label) {
+                  var input = $(this).parents('.input-group').find(':text'),
+                      log = numFiles > 1 ? numFiles + ' files selected' : label;
+                  if( input.length ) {
+                      input.val(log);
+                  } else {
+                      if( log ) alert(log);
+                  }
+              });
+          });
+
+        });
     </script>
 </section>
+
 @endsection

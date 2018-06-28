@@ -187,7 +187,11 @@
                             @endif
                             @if (Auth::user()->Role==2 or Auth::user()->Role==3)
                               <li><a href="{{url('notice/index')}}"><i class="fa fa-circle-o"></i>內部稽核通知單</a></li>
+                            @endif
+                            @if (Auth::user()->Role==0 or Auth::user()->Role==1)
                               <li><a href="{{url('check/index')}}"><i class="fa fa-circle-o"></i>稽核查檢表</a></li>
+                            @endif
+                            @if (Auth::user()->Role==2 or Auth::user()->Role==3)
                               <li><a href="{{url('track/reply/index')}}"><i class="fa fa-circle-o"></i>稽核追蹤回復</a></li>
                             @endif
                             @if (Auth::user()->Role==0 or Auth::user()->Role==1)

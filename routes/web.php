@@ -75,6 +75,7 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
         Route::post('track/end/{id}','TrackController@end');
         //PDF
         Route::get('pdf','pdfController@pdftest');
+        Route::get('download/{file}','CheckController@download');
 
       });
       Route::middleware(['preventInfor'])->group(function () {
