@@ -65,11 +65,4 @@
               }
           });
     </script>
-
-
-
-
-
-
-
 @endsection

@@ -7,10 +7,15 @@ use PDF;
 use App\Project;
 use App\Schedule;
 use App\Checks;
+
 class pdfController extends Controller
 {
-    public function pdftest(){
-      $project=Project::where('id','1')->get();
+    public function index(){
+      $projects = Project::All();
+      return view('pdf.index',['projects'=>$projects]);
+    }
+    public function pdf(Request $request){
+      $project=Project::where('id',$request->id)->get();
       $schedule=Schedule::where('P_id',$project[0]->id)->get();
       $s_id=array_flatten(Schedule::select('id')->where('P_id',$project[0]->id)->where('Issend',2)->get()->toArray());
       $checks =Checks::wherein('s_id',$s_id)->get();
@@ -19,7 +24,7 @@ class pdfController extends Controller
         $schedule[$key]->End_date = date('Y-m', strtotime($value->End_date));
       }
       PDF::SetFont('stsongstdlight', '', 14);
-      PDF::SetTitle('Hello World');
+      PDF::SetTitle($request->name);
       PDF::AddPage('P');
       PDF::SetMargins(40,0,60);
       PDF::Image(asset('/images/logo.gif'), 140,7,50,15);

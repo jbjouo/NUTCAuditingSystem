@@ -208,7 +208,7 @@
                                 </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{url('pdf')}}"><i class="fa fa-circle-o"></i>pdf測試</a></li>
+                            <li><a href="{{url('pdf')}}"><i class="fa fa-circle-o"></i>生成pdf報表</a></li>
                         </ul>
                     </li>
                 </ul>
