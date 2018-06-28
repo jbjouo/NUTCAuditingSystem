@@ -154,18 +154,4 @@ class RegisterController extends Controller
         }
 
     }
-    public function EmailValidate($Account,$AuthCode)
-    {
-      $result = $this->CheckAuth($Account,$AuthCode);
-      return $result;
-    }
-    public function CheckAuth($Account,$AuthCode){
-        $user =User::where('Account',$Account)->get();
-        if ($user[0] -> AuthCode ==$AuthCode){
-          User::where('Account',$Account)->update(['AuthCode' => '']);
-            return '驗證成功';
-        }else{
-            return  '驗證失敗';
-        }
-    }
 }

@@ -38,7 +38,7 @@
                                   <td class="text-center">{!!html_entity_decode($check->belongsToSchedule->Focus)!!}</td>
                                   <td class="text-center">{{$check->result}}</td>
                                   <td class="text-center">{!!html_entity_decode($check->description)!!}</td>
-                                  <td class="text-center"><a href="{{url('download')}}/{{$check->supporting_information}}">{{$check->supporting_information}}</a></td>
+                                  <td class="text-center"><a href="{{url('download')}}/{{$check->id}}/{{$check->supporting_information}}">{{$check->supporting_information}}</a></td>
                                 </tr>
                               </tbody>
                           </table>

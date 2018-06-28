@@ -90,5 +90,5 @@ class NutcAuditingController extends Controller
 			}
 			return view('user.authResend');
 	}
-
+	
 }

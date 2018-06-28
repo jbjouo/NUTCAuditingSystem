@@ -42,4 +42,19 @@ class NoticeController extends Controller
 
       return redirect('notice/index');
     }
+
+    public function EmailValidate($Account,$AuthCode)
+  	{
+  		$result = $this->CheckAuth($Account,$AuthCode);
+  		return view('user.RegisterResult',['message'=>$result]);
+  	}
+  	public function CheckAuth($Account,$AuthCode){
+  			$user =User::where('Account',$Account)->first();
+  			if ($user->AuthCode == $AuthCode){
+  				User::where('Account',$Account)->update(['AuthCode' => '']);
+  					return '驗證成功';
+  			}else{
+  					return  '驗證失敗';
+  			}
+  	}
 }

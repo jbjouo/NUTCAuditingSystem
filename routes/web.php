@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return redirect('login');
 });
+Route::get('/register/{Account}&{AuthCode}', 'NoticeController@EmailValidate');
 
 Auth::routes();
 Route::get('resend','NutcAuditingController@resend');
@@ -75,7 +76,7 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
         Route::post('track/end/{id}','TrackController@end');
         //PDF
         Route::get('pdf','pdfController@pdftest');
-        Route::get('download/{file}','CheckController@download');
+        Route::get('download/{id}/{file}','CheckController@download');
 
       });
       Route::middleware(['preventInfor'])->group(function () {
@@ -87,4 +88,3 @@ Route::post('sendAuthEmail','NutcAuditingController@sendAuthEmail');
 
 
   });
-Route::get('/register/{Account}&{AuthCode}', 'Auth\RegisterController@EmailValidate');

@@ -29,8 +29,15 @@ class CheckController extends Controller
   }
   public function add(Request $request,$id)
   {
+    $Check = Checks::create([
+      's_id' =>$id ,
+      'result'=>$request->result,
+      'description'=>$request->description,
+      'supporting_information'=>$request->file->getclientoriginalname()
+    ]);
+
     try{
-        $destinationPath = public_path().'/supporting_information/';
+        $destinationPath = public_path().'/supporting_information/'.'/C_'.$Check->id.'/';
         $filename = $request->file->getClientOriginalName();
         $filetype=$request->file->getMimeType();
         $request->file('file')->move($destinationPath,$filename);
@@ -39,12 +46,7 @@ class CheckController extends Controller
         return "發生錯誤";
     }
 
-    $Check = Checks::create([
-      's_id' =>$id ,
-      'result'=>$request->result,
-      'description'=>$request->description,
-      'supporting_information'=>$request->file->getclientoriginalname()
-    ]);
+
     return redirect('check/index/'.$request->id);
   }
 
@@ -53,9 +55,9 @@ class CheckController extends Controller
     $check =Checks::find($id);
     return view('check.browse',['check'=>$check]);
   }
-  public function download($file)
+  public function download($id,$file)
   {
-    $destinationPath = public_path().'/supporting_information/'.$file;
+    $destinationPath = public_path().'/supporting_information/'.'C_'.$id.'/'.$file;
     return response()->download($destinationPath);
   }
 
